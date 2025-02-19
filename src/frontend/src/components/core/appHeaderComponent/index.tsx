@@ -19,10 +19,11 @@ import { useEffect, useRef, useState } from "react";
 import { AccountMenu } from "./components/AccountMenu";
 import FlowMenu from "./components/FlowMenu";
 import GithubStarComponent from "./components/GithubStarButton";
-
+import { useTranslation } from "react-i18next";
 export default function AppHeader(): JSX.Element {
   const notificationCenter = useAlertStore((state) => state.notificationCenter);
   const navigate = useCustomNavigate();
+  const { t } = useTranslation();
   const [activeState, setActiveState] = useState<"notifications" | null>(null);
   const lastPath = window.location.pathname.split("/").filter(Boolean).pop();
   const notificationRef = useRef<HTMLButtonElement | null>(null);
@@ -137,7 +138,7 @@ export default function AppHeader(): JSX.Element {
                   className="side-bar-button-size h-[18px] w-[18px]"
                 />
                 <span className="hidden whitespace-nowrap 2xl:inline">
-                  Notifications
+                  {t("header.NOTIFICATIONS")}
                 </span>
               </Button>
             </AlertDropdown>

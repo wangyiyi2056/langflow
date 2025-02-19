@@ -16,6 +16,7 @@ import { BASENAME } from "./customization/config-constants";
 import {
   ENABLE_CUSTOM_PARAM,
   ENABLE_HOMEPAGE,
+  ENABLE_LANGUAGE,
 } from "./customization/feature-flags";
 import { AppAuthenticatedPage } from "./pages/AppAuthenticatedPage";
 import { AppInitPage } from "./pages/AppInitPage";
@@ -30,6 +31,7 @@ import HomePage from "./pages/MainPage/pages/homePage";
 import SettingsPage from "./pages/SettingsPage";
 import ApiKeysPage from "./pages/SettingsPage/pages/ApiKeysPage";
 import GeneralPage from "./pages/SettingsPage/pages/GeneralPage";
+import LanguagePage from "./pages/SettingsPage/pages/LanguagePage";
 import GlobalVariablesPage from "./pages/SettingsPage/pages/GlobalVariablesPage";
 import MessagesPage from "./pages/SettingsPage/pages/messagesPage";
 import ShortcutsPage from "./pages/SettingsPage/pages/ShortcutsPage";
@@ -151,6 +153,12 @@ const router = createBrowserRouter(
                     index
                     element={<CustomNavigate replace to={"general"} />}
                   />
+                  {ENABLE_LANGUAGE && (
+                    <Route
+                      path="language"
+                      element={<LanguagePage />}
+                    />
+                  )}
                   <Route
                     path="global-variables"
                     element={<GlobalVariablesPage />}

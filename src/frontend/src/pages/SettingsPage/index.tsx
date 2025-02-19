@@ -3,6 +3,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import {
   ENABLE_DATASTAX_LANGFLOW,
   ENABLE_PROFILE_ICONS,
+  ENABLE_LANGUAGE
 } from "@/customization/feature-flags";
 import useAuthStore from "@/stores/authStore";
 import { useStoreStore } from "@/stores/storeStore";
@@ -30,6 +31,18 @@ export default function SettingsPage(): JSX.Element {
       icon: (
         <ForwardedIconComponent
           name="SlidersHorizontal"
+          className="w-4 flex-shrink-0 justify-start stroke-[1.5]"
+        />
+      ),
+    });
+  }
+  if (ENABLE_LANGUAGE) {
+    sidebarNavItems.push({
+      title: "Language",
+      href: "/settings/language",
+      icon: (
+        <ForwardedIconComponent
+          name="Languages"
           className="w-4 flex-shrink-0 justify-start stroke-[1.5]"
         />
       ),
