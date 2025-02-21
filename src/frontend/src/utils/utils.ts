@@ -453,7 +453,6 @@ export function messagesSorter(a: any, b: any) {
   // If the field is not in the MESSAGES_TABLE_ORDER, we can place it at the end.
   const orderA = indexA === -1 ? MESSAGES_TABLE_ORDER.length : indexA;
   const orderB = indexB === -1 ? MESSAGES_TABLE_ORDER.length : indexB;
-
   return orderA - orderB;
 }
 
@@ -754,3 +753,14 @@ export const isStringArray = (value: unknown): value is string[] => {
 };
 
 export const stringToBool = (str) => (str === "false" ? false : true);
+
+/**
+ * 将字符串转换为全大写蛇形命名格式（移除特殊字符）
+ * @example "Hello World!" => "HELLO_WORLD"
+ */
+export function toUpperSnakeCase(str: string): string {
+  return str
+    .toUpperCase()
+    .replace(/[^\w\s]/g, "")    // 移除特殊字符
+    .replace(/\s+/g, "_");     // 空格转下划线
+}

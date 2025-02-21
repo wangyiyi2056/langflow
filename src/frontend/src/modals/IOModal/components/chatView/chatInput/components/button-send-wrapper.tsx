@@ -4,7 +4,7 @@ import { Button } from "../../../../../../components/ui/button";
 import { Case } from "../../../../../../shared/components/caseComponent";
 import { FilePreviewType } from "../../../../../../types/components";
 import { classNames } from "../../../../../../utils/utils";
-
+import { useTranslation } from "react-i18next";
 const BUTTON_STATES = {
   NO_INPUT: "bg-high-indigo text-background",
   HAS_CHAT_VALUE: "text-primary",
@@ -28,7 +28,7 @@ const ButtonSendWrapper = ({
   files,
 }: ButtonSendWrapperProps) => {
   const stopBuilding = useFlowStore((state) => state.stopBuilding);
-
+  const { t } = useTranslation();
   const isBuilding = useFlowStore((state) => state.isBuilding);
   const showStopButton = isBuilding || files.some((file) => file.loading);
   const showSendButton =
@@ -61,7 +61,7 @@ const ButtonSendWrapper = ({
     >
       <Case condition={showStopButton}>
         <div className="flex items-center gap-2 rounded-md text-[14px] font-medium">
-          Stop
+          {t("flowPage.STOP")}
           <Loading className="h-[16px] w-[16px]" />
         </div>
       </Case>
@@ -76,7 +76,7 @@ const ButtonSendWrapper = ({
 
       <Case condition={showSendButton}>
         <div className="flex h-fit w-fit items-center gap-2 text-[14px] font-medium">
-          Send
+          {t("flowPage.SEND")}
         </div>
       </Case>
     </Button>

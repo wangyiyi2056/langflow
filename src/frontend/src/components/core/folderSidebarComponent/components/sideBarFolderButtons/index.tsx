@@ -34,6 +34,7 @@ import { SidebarFolderSkeleton } from "../sidebarFolderSkeleton";
 import { HeaderButtons } from "./components/header-buttons";
 import { InputEditFolderName } from "./components/input-edit-folder-name";
 import { SelectOptions } from "./components/select-options";
+import { useTranslation } from "react-i18next";
 
 type SideBarFoldersButtonsComponentProps = {
   handleChangeFolder?: (id: string) => void;
@@ -43,6 +44,7 @@ const SideBarFoldersButtonsComponent = ({
   handleChangeFolder,
   handleDeleteFolder,
 }: SideBarFoldersButtonsComponentProps) => {
+  const { t } = useTranslation();
   const location = useLocation();
   const pathname = location.pathname;
   const folders = useFolderStore((state) => state.folders);
@@ -191,14 +193,14 @@ const SideBarFoldersButtonsComponent = ({
     mutateAddFolder(
       {
         data: {
-          name: "New Folder",
+          name: t("folderSidebar.NEW_FOLDER"),
           parent_id: null,
           description: "",
         },
       },
       {
         onSuccess: (folder) => {
-          track("Create New Folder");
+          track(t("folderSidebar.CREATE_NEW_FOLDER"));
           handleChangeFolder!(folder.id);
         },
       },
@@ -335,6 +337,12 @@ const SideBarFoldersButtonsComponent = ({
 
   const [hoveredFolderId, setHoveredFolderId] = useState<string | null>(null);
 
+  const processedFolders = folders?.map(folder => 
+    folder.name === "My Projects" 
+      ? { ...folder, name: t("folderSidebar.MY_PROJECTS") } 
+      : folder
+  );
+
   return (
     <Sidebar
       collapsible={isMobile ? "offcanvas" : "none"}
@@ -353,7 +361,7 @@ const SideBarFoldersButtonsComponent = ({
           <SidebarGroupContent>
             <SidebarMenu>
               {!loading ? (
-                folders.map((item, index) => {
+                processedFolders.map((item, index) => {
                   const editFolderName = editFolders?.filter(
                     (folder) => folder.name === item.name,
                   )[0];

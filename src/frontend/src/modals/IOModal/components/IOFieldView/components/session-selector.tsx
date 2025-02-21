@@ -11,6 +11,7 @@ import { useUpdateSessionName } from "@/controllers/API/queries/messages/use-ren
 import useFlowStore from "@/stores/flowStore";
 import { cn } from "@/utils/utils";
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function SessionSelector({
   deleteSession,
@@ -31,6 +32,7 @@ export default function SessionSelector({
   selectedView?: { type: string; id: string };
   setSelectedView: (view: { type: string; id: string } | undefined) => void;
 }) {
+  const { t } = useTranslation();
   const currentFlowId = useFlowStore((state) => state.currentFlow?.id);
   const [isEditing, setIsEditing] = useState(false);
   const [editedSession, setEditedSession] = useState(session);
@@ -187,7 +189,7 @@ export default function SessionSelector({
             >
               <div className="flex items-center">
                 <IconComponent name="SquarePen" className="mr-2 h-4 w-4" />
-                Rename
+                {t("flowPage.RENAME")}
               </div>
             </SelectItem>
             <SelectItem
@@ -197,7 +199,7 @@ export default function SessionSelector({
               <div className="flex w-full items-center justify-between">
                 <div className="flex items-center">
                   <IconComponent name="Scroll" className="mr-2 h-4 w-4" />
-                  Message logs
+                  {t("flowPage.MESSAGE_LOGS")}
                 </div>
               </div>
             </SelectItem>
@@ -207,7 +209,7 @@ export default function SessionSelector({
             >
               <div className="flex items-center text-status-red hover:text-status-red">
                 <IconComponent name="Trash2" className="mr-2 h-4 w-4" />
-                Delete
+                {t("flowPage.DELETE")}
               </div>
             </SelectItem>
           </SelectContent>

@@ -3,6 +3,7 @@ import { useCustomNavigate } from "@/customization/hooks/use-custom-navigate";
 import { Button } from "../../ui/button";
 import { Separator } from "../../ui/separator";
 import ForwardedIconComponent from "../genericIconComponent";
+import { useTranslation } from "react-i18next";
 
 export default function PageLayout({
   title,
@@ -20,7 +21,7 @@ export default function PageLayout({
   backTo?: string;
 }) {
   const navigate = useCustomNavigate();
-
+  const { t } = useTranslation();
   return (
     <div className="flex w-full flex-1 flex-col justify-between overflow-auto overflow-x-hidden bg-background">
       <div className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col">
@@ -47,7 +48,7 @@ export default function PageLayout({
                   data-testid="mainpage_title"
                 >
                   {title}
-                  {betaIcon && <span className="store-beta-icon">Beta</span>}
+                  {betaIcon && <span className="store-beta-icon">{t("basic.BETA")}</span>}
                 </h2>
               </div>
               <p className="text-muted-foreground">{description}</p>

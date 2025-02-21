@@ -27,7 +27,7 @@ import {
   PopoverTrigger,
 } from "../../ui/popover";
 import { BaseInputProps } from "../parameterRenderComponent/types";
-
+import { useTranslation } from "react-i18next";
 export default function Dropdown({
   disabled,
   isLoading,
@@ -44,6 +44,7 @@ export default function Dropdown({
   ...baseInputProps
 }: BaseInputProps & DropDownComponent): JSX.Element {
   // Initialize state and refs
+  const { t } = useTranslation();
   const [open, setOpen] = useState(children ? true : false);
   const [openDialog, setOpenDialog] = useState(false);
   const [customValue, setCustomValue] = useState("");
@@ -400,7 +401,7 @@ export default function Dropdown({
   if (Object.keys(options).length === 0 && !combobox && isLoading) {
     return (
       <div>
-        <span className="text-sm italic">Loading...</span>
+        <span className="text-sm italic">{t("basic.LOADING")}</span>
       </div>
     );
   }

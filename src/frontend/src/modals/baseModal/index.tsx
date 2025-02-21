@@ -21,6 +21,7 @@ import { Button } from "../../components/ui/button";
 import { modalHeaderType } from "../../types/components";
 import { cn } from "../../utils/utils";
 import { switchCaseModalSize } from "./helpers/switch-case-size";
+import { useTranslation } from "react-i18next"; 
 
 type ContentProps = {
   children: ReactNode;
@@ -100,6 +101,7 @@ const Footer: React.FC<{
   close?: boolean;
   centered?: boolean;
 }> = ({ children, submit, close, centered }) => {
+  const { t } = useTranslation();
   return (
     <div
       className={
@@ -118,7 +120,7 @@ const Footer: React.FC<{
                 type="button"
                 data-testid="btn-cancel-modal"
               >
-                Cancel
+                {t("basic.CANCEL")}
               </Button>
             </DialogClose>
             <Button

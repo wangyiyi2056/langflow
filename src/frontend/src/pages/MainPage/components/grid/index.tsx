@@ -22,10 +22,11 @@ import useDescriptionModal from "../../hooks/use-description-modal";
 import { useGetTemplateStyle } from "../../utils/get-template-style";
 import { timeElapsed } from "../../utils/time-elapse";
 import DropdownComponent from "../dropdown";
+import { useTranslation } from "react-i18next";
 
 const GridComponent = ({ flowData }: { flowData: FlowType }) => {
   const navigate = useCustomNavigate();
-
+  const { t } = useTranslation();
   const [openDelete, setOpenDelete] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
   const setSuccessData = useAlertStore((state) => state.setSuccessData);
@@ -99,7 +100,7 @@ const GridComponent = ({ flowData }: { flowData: FlowType }) => {
                 {flowData.name}
               </div>
               <div className="truncate text-xs text-muted-foreground">
-                Edited {timeElapsed(flowData.updated_at)} ago
+                {t("mainPage.EDITED")} {timeElapsed(flowData.updated_at)} {t("mainPage.time.AGO")}
               </div>
             </div>
             <DropdownMenu>

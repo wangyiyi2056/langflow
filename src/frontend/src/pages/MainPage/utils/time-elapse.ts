@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 export const timeElapsed = (dateTimeString: string | undefined): string => {
+  const { t } = useTranslation();
   if (!dateTimeString) {
     return "";
   }
@@ -15,16 +18,16 @@ export const timeElapsed = (dateTimeString: string | undefined): string => {
   const years = Math.floor(months / 12);
 
   if (years > 0) {
-    return years === 1 ? `${years} year` : `${years} years`;
+    return years === 1 ? `${years} ${t("mainPage.time.YEAR")}` : `${years} ${t("mainPage.time.YEARS")}`;
   } else if (months > 0) {
-    return months === 1 ? `${months} month` : `${months} months`;
+    return months === 1 ? `${months} ${t("mainPage.time.MONTH")}` : `${months} ${t("mainPage.time.MONTHS")}`;
   } else if (days > 0) {
-    return days === 1 ? `${days} day` : `${days} days`;
+    return days === 1 ? `${days} ${t("mainPage.time.DAY")}` : `${days} ${t("mainPage.time.DAYS")}`;
   } else if (hours > 0) {
-    return hours === 1 ? `${hours} hour` : `${hours} hours`;
+    return hours === 1 ? `${hours} ${t("mainPage.time.HOUR")}` : `${hours} ${t("mainPage.time.HOURS")}`;
   } else if (minutes > 0) {
-    return minutes === 1 ? `${minutes} minute` : `${minutes} minutes`;
+    return minutes === 1 ? `${minutes} ${t("mainPage.time.MINUTE")}` : `${minutes} ${t("mainPage.time.MINUTES")}`;
   } else {
-    return "less than a minute";
+    return `${t("mainPage.time.LESS_THAN_A_MINUTE")}`;
   }
 };

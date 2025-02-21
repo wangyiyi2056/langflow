@@ -29,11 +29,9 @@ import {
   NOAPI_ERROR_ALERT,
 } from "../../constants/alerts_constants";
 import {
-  STORE_DESC,
   STORE_PAGINATION_PAGE,
   STORE_PAGINATION_ROWS_COUNT,
   STORE_PAGINATION_SIZE,
-  STORE_TITLE,
 } from "../../constants/constants";
 import { AuthContext } from "../../contexts/authContext";
 import { getStoreComponents } from "../../controllers/API";
@@ -43,14 +41,15 @@ import { useStoreStore } from "../../stores/storeStore";
 import { storeComponent } from "../../types/store";
 import { cn } from "../../utils/utils";
 import InputSearchComponent from "../MainPage/oldComponents/myCollectionComponent/components/inputSearchComponent";
+import { useTranslation } from "react-i18next";
+import { toUpperSnakeCase } from "@/utils/utils";
 
 export default function StorePage(): JSX.Element {
   const hasApiKey = useStoreStore((state) => state.hasApiKey);
   const validApiKey = useStoreStore((state) => state.validApiKey);
   const loadingApiKey = useStoreStore((state) => state.loadingApiKey);
-
   const setValidApiKey = useStoreStore((state) => state.updateValidApiKey);
-
+  const { t } = useTranslation();
   const { apiKey } = useContext(AuthContext);
 
   const setErrorData = useAlertStore((state) => state.setErrorData);
@@ -69,7 +68,6 @@ export default function StorePage(): JSX.Element {
   const [selectFilter, setSelectFilter] = useState("all");
 
   const tags = useUtilityStore((state) => state.tags);
-
   const navigate = useCustomNavigate();
 
   useEffect(() => {
@@ -162,8 +160,8 @@ export default function StorePage(): JSX.Element {
   return (
     <PageLayout
       betaIcon
-      title={STORE_TITLE}
-      description={STORE_DESC}
+      title={t("constants.STORE_TITLE")}
+      description={t("constants.STORE_DESC")}
       button={
         <Button
           data-testid="api-key-button-store"
@@ -178,7 +176,7 @@ export default function StorePage(): JSX.Element {
           }}
         >
           <IconComponent name="Key" className="mr-2 w-4" />
-          API Key
+          {t("storePage.API_KEY")}
         </Button>
       }
     >
@@ -213,7 +211,7 @@ export default function StorePage(): JSX.Element {
                   (loading ? " cursor-not-allowed" : "")
                 }
               >
-                All
+                {t("basic.ALL")}
               </button>
               <button
                 data-testid="flows-button-store"
@@ -229,7 +227,7 @@ export default function StorePage(): JSX.Element {
                   (loading ? " cursor-not-allowed" : "")
                 }
               >
-                Flows
+                {t("basic.FLOWS")}
               </button>
               <button
                 data-testid="components-button-store"
@@ -245,11 +243,11 @@ export default function StorePage(): JSX.Element {
                   (loading ? " cursor-not-allowed" : "")
                 }
               >
-                Components
+                {t("basic.COMPONENTS")}
               </button>
               <ShadTooltip content="Coming Soon">
                 <button className="cursor-not-allowed p-3 text-muted-foreground">
-                  Bundles
+                  {t("basic.BUNDLES")}
                 </button>
               </ShadTooltip>
             </div>
@@ -266,25 +264,28 @@ export default function StorePage(): JSX.Element {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="all">All</SelectItem>
+                  <SelectItem value="all"> {t("basic.ALL")}</SelectItem>
                   <SelectItem
                     disabled={!hasApiKey || !validApiKey}
                     value="createdbyme"
                   >
-                    Created By Me
+                    {t("storePage.CREATED_BY_ME")}
                   </SelectItem>
                   <SelectItem
                     disabled={!hasApiKey || !validApiKey}
                     value="likedbyme"
                   >
-                    Liked By Me
+                    {t("storePage.LIKED_BY_ME")}
                   </SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
             {id === undefined ? (
               <TagsSelector
-                tags={tags ?? []}
+                tags={(tags ?? []).map(tag => ({
+                  ...tag,
+                  name: t(`storePage.${toUpperSnakeCase(tag.name)}`, { defaultValue: tag.name })
+                }))}
                 loadingTags={false}
                 disabled={loading}
                 selectedTags={filteredCategories}
@@ -308,7 +309,7 @@ export default function StorePage(): JSX.Element {
             <span className="px-0.5 text-sm text-muted-foreground">
               {(!loading || searchData.length !== 0) && (
                 <>
-                  {totalRowsCount} {totalRowsCount !== 1 ? "results" : "result"}
+                  {totalRowsCount} {totalRowsCount !== 1 ? t("storePage.RESULTS") : t("storePage.RESULT")}
                 </>
               )}
             </span>
@@ -320,12 +321,12 @@ export default function StorePage(): JSX.Element {
               }}
             >
               <SelectTrigger data-testid="select-order-store">
-                <SelectValue placeholder="Popular" />
+                <SelectValue placeholder={t("storePage.POPULAR")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Popular">Popular</SelectItem>
+                <SelectItem value="Popular">{t("storePage.POPULAR")}</SelectItem>
                 {/* <SelectItem value="Recent">Most Recent</SelectItem> */}
-                <SelectItem value="Alphabetical">Alphabetical</SelectItem>
+                <SelectItem value="Alphabetical">{t("storePage.ALPHABETICAL")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -366,9 +367,7 @@ export default function StorePage(): JSX.Element {
                       </>
                     ) : (
                       <>
-                        There are no{" "}
-                        {tabActive == "Flows" ? "Flows" : "Components"} with the
-                        selected filters.
+                        {tabActive == "Flows" ? t("constants.NO_FLOWS_WITH_SELECTED_FILTERS") : t("constants.NO_COMPONENTS_WITH_SELECTED_FILTERS")}
                       </>
                     )}
                   </div>

@@ -32,8 +32,9 @@ import useFlowStore from "@/stores/flowStore";
 import { useShortcutsStore } from "@/stores/shortcuts";
 import { cn } from "@/utils/utils";
 import { useQueryClient } from "@tanstack/react-query";
-
+import { useTranslation } from "react-i18next";
 export const MenuBar = ({}: {}): JSX.Element => {
+  const { t } = useTranslation();
   const shortcuts = useShortcutsStore((state) => state.shortcuts);
   const addFlow = useAddFlow();
   const setErrorData = useAlertStore((state) => state.setErrorData);
@@ -128,7 +129,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
         id="menu_status_saved_flow_button"
         className="shrink-0 text-xs font-medium text-accent-emerald-foreground"
       >
-        Saved
+        {t("header.SAVED")}
       </div>
     );
   }
@@ -320,7 +321,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
               />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-44 bg-white dark:bg-background">
-              <DropdownMenuLabel>Options</DropdownMenuLabel>
+              {/* <DropdownMenuLabel>Options</DropdownMenuLabel> */}
               <DropdownMenuItem
                 onClick={() => {
                   handleAddFlow();
@@ -330,7 +331,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                 id="menu_new_flow_button"
               >
                 <IconComponent name="Plus" className="header-menu-options" />
-                New
+                {t("basic.NEW")}
               </DropdownMenuItem>
 
               <DropdownMenuItem
@@ -345,7 +346,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                   name="SquarePen"
                   className="header-menu-options"
                 />
-                Edit Details
+                {t("basic.EDIT")}
               </DropdownMenuItem>
               {!autoSaving && (
                 <DropdownMenuItem
@@ -378,7 +379,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                   name="ScrollText"
                   className="header-menu-options"
                 />
-                Logs
+                {t("basic.LOGS")}
               </DropdownMenuItem>
               <DropdownMenuItem
                 className="cursor-pointer"
@@ -400,7 +401,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                 id="menu_import_flow_button"
               >
                 <IconComponent name="FileUp" className="header-menu-options" />
-                Import
+                {t("basic.IMPORT")}
               </DropdownMenuItem>
               <ExportModal>
                 <div className="header-menubar-item">
@@ -408,7 +409,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                     name="FileDown"
                     className="header-menu-options"
                   />
-                  Export
+                  {t("basic.EXPORT")}
                 </div>
               </ExportModal>
               <DropdownMenuItem
@@ -420,7 +421,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                 id="menu_undo_flow_button"
               >
                 <ToolbarSelectItem
-                  value="Undo"
+                  value={t("basic.UNDO")}
                   icon="Undo"
                   dataTestId=""
                   shortcut={
@@ -438,7 +439,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                 id="menu_redo_flow_button"
               >
                 <ToolbarSelectItem
-                  value="Redo"
+                  value={t("basic.REDO")}
                   icon="Redo"
                   dataTestId=""
                   shortcut={
@@ -459,7 +460,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                   name="RefreshCcw"
                   className="header-menu-options"
                 />
-                Refresh All
+                {t("basic.REFRESH_ALL")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

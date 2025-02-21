@@ -19,8 +19,10 @@ import {
 import { useRef, useState } from "react";
 import { Badge } from "../../../../components/ui/badge";
 import useAlertStore from "../../../../stores/alertStore";
+import { useTranslation } from "react-i18next";
 
 export default function GlobalVariablesPage() {
+  const { t } = useTranslation();
   const setErrorData = useAlertStore((state) => state.setErrorData);
   const [openModal, setOpenModal] = useState(false);
   const initialData = useRef<GlobalVariable | undefined>(undefined);
@@ -46,12 +48,12 @@ export default function GlobalVariablesPage() {
   // Column Definitions: Defines the columns to be displayed.
   const colDefs: ColDef[] = [
     {
-      headerName: "Variable Name",
+      headerName: t("settingsPage.globalTable.VARIABLE_NAME"),
       field: "name",
       flex: 2,
     }, //This column will be twice as wide as the others
     {
-      headerName: "Type",
+      headerName: t("settingsPage.globalTable.TYPE"),
       field: "type",
       cellRenderer: BadgeRenderer,
       cellEditor: DropdownEditor,
@@ -61,10 +63,11 @@ export default function GlobalVariablesPage() {
       flex: 1,
     },
     {
+      headerName: t("settingsPage.globalTable.VALUE"),
       field: "value",
     },
     {
-      headerName: "Apply To Fields",
+      headerName: t("settingsPage.globalTable.APPLY_TO_FIELDS"),
       field: "default_fields",
       valueFormatter: (params) => {
         return params.value?.join(", ") ?? "";
@@ -106,21 +109,21 @@ export default function GlobalVariablesPage() {
       <div className="flex w-full items-start justify-between gap-6">
         <div className="flex w-full flex-col">
           <h2 className="flex items-center text-lg font-semibold tracking-tight">
-            Global Variables
+            {t("settingsPage.GLOBAL_VARIABLES")}
             <ForwardedIconComponent
               name="Globe"
               className="ml-2 h-5 w-5 text-primary"
             />
           </h2>
           <p className="text-sm text-muted-foreground">
-            Manage global variables and assign them to fields.
+            {t("settingsPage.GLOBAL_VARIABLES_DSC")}
           </p>
         </div>
         <div className="flex flex-shrink-0 items-center gap-2">
           <GlobalVariableModal asChild>
             <Button data-testid="api-key-button-store" variant="primary">
               <IconComponent name="Plus" className="w-4" />
-              Add New
+              {t("settingsPage.ADD_NEW")}
             </Button>
           </GlobalVariableModal>
         </div>

@@ -1,6 +1,7 @@
 import { ChangeEvent, KeyboardEvent } from "react";
 import ForwardedIconComponent from "../../../../../../components/common/genericIconComponent";
 import { Input } from "../../../../../../components/ui/input";
+import { useTranslation } from "react-i18next";
 
 type InputSearchComponentProps = {
   loading: boolean;
@@ -20,14 +21,14 @@ const InputSearchComponent = ({
   onKeyDown,
 }: InputSearchComponentProps) => {
   const pagePath = window.location.pathname;
-
+  const { t } = useTranslation();
   const getSearchPlaceholder = () => {
     if (pagePath.includes("flows")) {
-      return "Search Flows";
+      return t("mainPage.SEARCH_FLOWS");
     } else if (pagePath.includes("components")) {
-      return "Search Components";
+      return t("mainPage.SEARCH_COMPONENTS");
     } else {
-      return "Search Flows and Components";
+      return t("mainPage.SEARCH_FLOWS_AND_COMPONENTS");
     }
   };
 

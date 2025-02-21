@@ -2,7 +2,6 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 import en from "./en";
-import zh_tw from "./zh_tw";
 import zh from "./zh";
 
 const resources = {
@@ -11,9 +10,6 @@ const resources = {
   },
   zh: {
     translation: zh,
-  },
-  "zh-TW": {
-    translation: zh_tw,
   },
 };
 

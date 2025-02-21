@@ -8,11 +8,10 @@ import "ace-builds/src-noconflict/theme-twilight";
 import { ReactNode, useEffect, useState } from "react";
 import IconComponent from "../../components/common/genericIconComponent";
 import CodeTabsComponent from "../../components/core/codeTabsComponent";
-import { EXPORT_CODE_DIALOG } from "../../constants/constants";
 import { useTweaksStore } from "../../stores/tweaksStore";
 import { FlowType } from "../../types/flow/index";
 import BaseModal from "../baseModal";
-
+import { useTranslation } from "react-i18next";
 export default function ApiModal({
   flow,
   children,
@@ -24,6 +23,7 @@ export default function ApiModal({
   open?: boolean;
   setOpen?: (a: boolean | ((o?: boolean) => boolean)) => void;
 }) {
+  const { t } = useTranslation();
   const autoLogin = useAuthStore((state) => state.autoLogin);
   const [open, setOpen] =
     mySetOpen !== undefined && myOpen !== undefined
@@ -45,7 +45,7 @@ export default function ApiModal({
   return (
     <BaseModal open={open} setOpen={setOpen} size="x-large">
       <BaseModal.Trigger asChild>{children}</BaseModal.Trigger>
-      <BaseModal.Header description={EXPORT_CODE_DIALOG}>
+      <BaseModal.Header description={t("constants.EXPORT_CODE_DIALOG")}>
         <span className="pr-2">API</span>
         <IconComponent
           name="Code2"

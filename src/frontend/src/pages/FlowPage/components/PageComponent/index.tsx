@@ -69,6 +69,7 @@ import SelectionMenu from "../SelectionMenuComponent";
 import UpdateAllComponents from "../UpdateAllComponents";
 import getRandomName from "./utils/get-random-name";
 import isWrappedWithClass from "./utils/is-wrapped-with-class";
+import { useTranslation } from "react-i18next";
 
 const nodeTypes = {
   genericNode: GenericNode,
@@ -80,6 +81,7 @@ const edgeTypes = {
 };
 
 export default function Page({ view }: { view?: boolean }): JSX.Element {
+  const { t } = useTranslation();
   const uploadFlow = useUploadFlow();
   const autoSaveFlow = useAutoSaveFlow();
   const types = useTypesStore((state) => state.types);
@@ -580,7 +582,7 @@ export default function Page({ view }: { view?: boolean }): JSX.Element {
                 <CanvasControls>
                   <CustomControlButton
                     iconName="sticky-note"
-                    tooltipText="Add Note"
+                    tooltipText={t("flowPage.ADD_NOTE")}
                     onClick={() => {
                       setIsAddingNote(true);
                       const shadowBox = document.getElementById("shadow-box");

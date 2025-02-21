@@ -2,6 +2,7 @@ import { useUtilityStore } from "@/stores/utilityStore";
 import { useEffect } from "react";
 import { Textarea } from "../../../../../../components/ui/textarea";
 import { classNames } from "../../../../../../utils/utils";
+import { useTranslation } from "react-i18next";
 
 const TextAreaWrapper = ({
   checkSendingOk,
@@ -15,16 +16,17 @@ const TextAreaWrapper = ({
   files,
   isDragging,
 }) => {
+  const { t } = useTranslation();
   const getPlaceholderText = (
     isDragging: boolean,
     noInput: boolean,
   ): string => {
     if (isDragging) {
-      return "Drop here";
+      return t("flowPage.DROP_HERE");
     } else if (noInput) {
       return CHAT_INPUT_PLACEHOLDER;
     } else {
-      return "Send a message...";
+      return t("flowPage.SEND_A_MESSAGE");
     }
   };
 

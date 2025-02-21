@@ -40,7 +40,7 @@ import ToolbarModals from "./components/toolbar-modals";
 import useShortcuts from "./hooks/use-shortcuts";
 import ShortcutDisplay from "./shortcutDisplay";
 import ToolbarSelectItem from "./toolbarSelectItem";
-
+import { useTranslation } from "react-i18next";
 const NodeToolbarComponent = memo(
   ({
     data,
@@ -54,6 +54,7 @@ const NodeToolbarComponent = memo(
     isOutdated,
     setOpenShowMoreOptions,
   }: nodeToolbarPropsType): JSX.Element => {
+    const { t } = useTranslation();
     const version = useDarkStore((state) => state.version);
     const [showModalAdvanced, setShowModalAdvanced] = useState(false);
     const [showconfirmShare, setShowconfirmShare] = useState(false);
@@ -451,7 +452,7 @@ const NodeToolbarComponent = memo(
           {hasCode && (
             <ToolbarButton
               icon="Code"
-              label="Code"
+              label={t("flowPage.more.CODE")}
               onClick={() => setOpenModal(true)}
               shortcut={shortcuts.find((s) =>
                 s.name.toLowerCase().startsWith("code"),
@@ -462,7 +463,7 @@ const NodeToolbarComponent = memo(
           {nodeLength > 0 && (
             <ToolbarButton
               icon="SlidersHorizontal"
-              label="Controls"
+              label={t("flowPage.more.CONTROLS")}
               onClick={() => setShowModalAdvanced(true)}
               shortcut={shortcuts.find((s) =>
                 s.name.toLowerCase().startsWith("advanced"),
@@ -473,7 +474,7 @@ const NodeToolbarComponent = memo(
           {!hasToolMode && (
             <ToolbarButton
               icon="FreezeAll"
-              label="Freeze Path"
+              label={t("flowPage.more.FREEZE_PATH")}
               onClick={() => {
                 takeSnapshot();
                 FreezeAllVertices({
@@ -519,7 +520,9 @@ const NodeToolbarComponent = memo(
                     toolMode ? "text-primary" : "",
                   )}
                 />
-                <span className="text-[13px] font-medium">Tool Mode</span>
+                <span className="text-[13px] font-medium">
+                  {t("flowPage.more.TOOL_MODE")}
+                </span>
                 <ToggleShadComponent
                   value={toolMode}
                   editNode={false}
@@ -563,7 +566,7 @@ const NodeToolbarComponent = memo(
               onOpenChange={handleOpenChange}
             >
               <SelectTrigger className="w-62">
-                <ShadTooltip content="Show More" side="top">
+                <ShadTooltip content={t("flowPage.SHOW_MORE")} side="top">
                   <div data-testid="more-options-modal">
                     <Button
                       className="node-toolbar-buttons h-[2rem] w-[2rem]"
@@ -589,7 +592,7 @@ const NodeToolbarComponent = memo(
                       shortcut={
                         shortcuts.find((obj) => obj.name === "Code")?.shortcut!
                       }
-                      value={"Code"}
+                      value={t("flowPage.more.CODE")}
                       icon={"Code"}
                       dataTestId="code-button-modal"
                     />
@@ -605,7 +608,7 @@ const NodeToolbarComponent = memo(
                           (obj) => obj.name === "Advanced Settings",
                         )?.shortcut!
                       }
-                      value={"Controls"}
+                      value={t("flowPage.more.CONTROLS")}
                       icon={"SlidersHorizontal"}
                       dataTestId="advanced-button-modal"
                     />
@@ -617,7 +620,7 @@ const NodeToolbarComponent = memo(
                       shortcuts.find((obj) => obj.name === "Save Component")
                         ?.shortcut!
                     }
-                    value={"Save"}
+                    value={t("flowPage.more.SAVE")}
                     icon={"SaveAll"}
                     dataTestId="save-button-modal"
                   />
@@ -628,7 +631,7 @@ const NodeToolbarComponent = memo(
                       shortcuts.find((obj) => obj.name === "Duplicate")
                         ?.shortcut!
                     }
-                    value={"Duplicate"}
+                    value={t("flowPage.more.DUPLICATE")}
                     icon={"Copy"}
                     dataTestId="copy-button-modal"
                   />
@@ -638,7 +641,7 @@ const NodeToolbarComponent = memo(
                     shortcut={
                       shortcuts.find((obj) => obj.name === "Copy")?.shortcut!
                     }
-                    value={"Copy"}
+                    value={t("flowPage.more.COPY")}
                     icon={"Clipboard"}
                     dataTestId="copy-button-modal"
                   />
@@ -650,7 +653,7 @@ const NodeToolbarComponent = memo(
                         shortcuts.find((obj) => obj.name === "Update")
                           ?.shortcut!
                       }
-                      value={"Restore"}
+                      value={t("flowPage.more.RESTORE")}
                       icon={"RefreshCcwDot"}
                       dataTestId="update-button-modal"
                     />
@@ -666,7 +669,7 @@ const NodeToolbarComponent = memo(
                         shortcuts.find((obj) => obj.name === "Component Share")
                           ?.shortcut!
                       }
-                      value={"Share"}
+                      value={t("flowPage.more.SHARE")}
                       icon={"Share3"}
                       dataTestId="share-button-modal"
                     />
@@ -681,7 +684,7 @@ const NodeToolbarComponent = memo(
                     shortcut={
                       shortcuts.find((obj) => obj.name === "Docs")?.shortcut!
                     }
-                    value={"Docs"}
+                    value={t("flowPage.more.DOCS")}
                     icon={"FileText"}
                     dataTestId="docs-button-modal"
                   />
@@ -696,7 +699,7 @@ const NodeToolbarComponent = memo(
                         shortcuts.find((obj) => obj.name === "Minimize")
                           ?.shortcut!
                       }
-                      value={showNode ? "Minimize" : "Expand"}
+                      value={showNode ? t("flowPage.more.MINIMIZE") : t("flowPage.more.EXPAND")}
                       icon={showNode ? "Minimize2" : "Maximize2"}
                     />
                   </SelectItem>
@@ -707,7 +710,7 @@ const NodeToolbarComponent = memo(
                       shortcut={
                         shortcuts.find((obj) => obj.name === "Group")?.shortcut!
                       }
-                      value={"Ungroup"}
+                      value={t("flowPage.more.UNGROUP")}
                       icon={"Ungroup"}
                       dataTestId="group-button-modal"
                     />
@@ -718,7 +721,7 @@ const NodeToolbarComponent = memo(
                     shortcut={
                       shortcuts.find((obj) => obj.name === "Freeze")?.shortcut!
                     }
-                    value={"Freeze"}
+                    value={t("flowPage.more.FREEZE")}
                     icon={"Snowflake"}
                     dataTestId="freeze-button"
                     style={`${frozen ? " text-ice" : ""} transition-all`}
@@ -730,7 +733,7 @@ const NodeToolbarComponent = memo(
                       shortcuts.find((obj) => obj.name === "Freeze Path")
                         ?.shortcut!
                     }
-                    value={"Freeze Path"}
+                    value={t("flowPage.more.FREEZE_PATH")}
                     icon={"FreezeAll"}
                     dataTestId="freeze-path-button"
                     style={`${frozen ? " text-ice" : ""} transition-all`}
@@ -742,7 +745,7 @@ const NodeToolbarComponent = memo(
                       shortcuts.find((obj) => obj.name === "Download")
                         ?.shortcut!
                     }
-                    value={"Download"}
+                    value={t("flowPage.more.DOWNLOAD")}
                     icon={"Download"}
                     dataTestId="download-button-modal"
                   />
@@ -753,7 +756,7 @@ const NodeToolbarComponent = memo(
                       name="Trash2"
                       className="relative top-0.5 mr-2 h-4 w-4"
                     />{" "}
-                    <span className="">Delete</span>{" "}
+                    <span className="">{t("flowPage.more.DELETE")}</span>{" "}
                     <span
                       className={`absolute right-2 top-2 flex items-center justify-center rounded-sm px-1 py-[0.2]`}
                     >
@@ -771,7 +774,7 @@ const NodeToolbarComponent = memo(
                         shortcuts.find((obj) => obj.name === "Tool Mode")
                           ?.shortcut!
                       }
-                      value={"Tool Mode"}
+                      value={t("flowPage.more.TOOL_MODE")}
                       icon={"Hammer"}
                       dataTestId="tool-mode-button"
                       style={`${toolMode ? "text-primary" : ""} transition-all`}

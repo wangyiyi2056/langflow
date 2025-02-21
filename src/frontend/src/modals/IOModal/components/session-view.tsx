@@ -11,6 +11,8 @@ import TableComponent from "../../../components/core/parameterRenderComponent/co
 import useAlertStore from "../../../stores/alertStore";
 import { useMessagesStore } from "../../../stores/messagesStore";
 import { extractColumnsFromRows, messagesSorter } from "../../../utils/utils";
+import { useTranslation } from "react-i18next";
+import { toUpperSnakeCase } from "../../../utils/utils";
 
 export default function SessionView({
   session,
@@ -24,7 +26,15 @@ export default function SessionView({
   const setSuccessData = useAlertStore((state) => state.setSuccessData);
   const updateMessage = useMessagesStore((state) => state.updateMessage);
   const deleteMessagesStore = useMessagesStore((state) => state.removeMessages);
-  const columns = extractColumnsFromRows(messages, "intersection");
+  const { t } = useTranslation();
+  const columns = extractColumnsFromRows(messages, "intersection").map(
+    (col) => ({
+      ...col,
+      headerName: t(`settingsPage.messagesTable.${toUpperSnakeCase(col.field ?? "")}`),
+      filter: true,
+    }), 
+  );
+  console.log(columns);
   const isFetching = useIsFetching({
     queryKey: ["useGetMessagesQuery"],
     exact: false,

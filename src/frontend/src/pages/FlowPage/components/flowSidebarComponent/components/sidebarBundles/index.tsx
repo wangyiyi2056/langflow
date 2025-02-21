@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/sidebar";
 import { memo, useMemo } from "react";
 import { BundleItem } from "../bundleItems";
+import { useTranslation } from "react-i18next";
 
 export const MemoizedSidebarGroup = memo(
   ({
@@ -33,6 +34,7 @@ export const MemoizedSidebarGroup = memo(
     setOpenCategories: any;
     handleKeyDownInput: any;
   }) => {
+    const { t } = useTranslation();
     // Memoize the sorted bundles calculation
     const sortedBundles = useMemo(() => {
       return BUNDLES.toSorted((a, b) => {
@@ -46,7 +48,7 @@ export const MemoizedSidebarGroup = memo(
 
     return (
       <SidebarGroup className="p-3">
-        <SidebarGroupLabel>Bundles</SidebarGroupLabel>
+        <SidebarGroupLabel>{t("flowPage.BUNDLES")}</SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu>
             {sortedBundles.map((item) => (

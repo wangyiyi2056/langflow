@@ -17,7 +17,7 @@ import { memo, useCallback, useMemo } from "react";
 import IconComponent from "../../../components/common/genericIconComponent";
 import { ColorPickerButtons } from "../components/color-picker-buttons";
 import { SelectItems } from "../components/select-items";
-
+import { useTranslation } from "react-i18next";
 const NoteToolbarComponent = memo(function NoteToolbarComponent({
   data,
   bgColor,
@@ -26,7 +26,7 @@ const NoteToolbarComponent = memo(function NoteToolbarComponent({
   bgColor: string;
 }) {
   const setNoticeData = useAlertStore((state) => state.setNoticeData);
-
+  const { t } = useTranslation();
   // Combine multiple store selectors into one to reduce re-renders
   const { nodes, setLastCopiedSelection, paste, setNode, deleteNode } =
     useFlowStore(
@@ -136,7 +136,7 @@ const NoteToolbarComponent = memo(function NoteToolbarComponent({
 
         <Select onValueChange={handleSelectChange} value="">
           <SelectTrigger>
-            <ShadTooltip content="Show More" side="top">
+            <ShadTooltip content={t("flowPage.SHOW_MORE")} side="top">
               <div>
                 <div
                   data-testid="more-options-modal"

@@ -15,8 +15,10 @@ import { useShortcutsStore } from "../../../stores/shortcuts";
 import { useStoreStore } from "../../../stores/storeStore";
 import { classNames, isThereModal } from "../../../utils/utils";
 import ForwardedIconComponent from "../../common/genericIconComponent";
+import { useTranslation } from "react-i18next";
 
 export default function FlowToolbar(): JSX.Element {
+  const { t } = useTranslation();
   const preventDefault = true;
   const [open, setOpen] = useState<boolean>(false);
   const [openCodeModal, setOpenCodeModal] = useState<boolean>(false);
@@ -70,7 +72,7 @@ export default function FlowToolbar(): JSX.Element {
         <ShadTooltip
           content={
             !hasApiKey || !validApiKey || !hasStore
-              ? "Store API Key Required"
+              ? t("flowPage.SHARE_TIP")
               : ""
           }
           side="bottom"
@@ -99,7 +101,9 @@ export default function FlowToolbar(): JSX.Element {
                     : "",
                 )}
               />
-              <span className="hidden md:block">Share</span>
+              <span className="hidden md:block whitespace-nowrap">
+                {t("flowPage.more.SHARE")}
+              </span>
             </>
           </button>
         </ShadTooltip>
@@ -154,7 +158,7 @@ export default function FlowToolbar(): JSX.Element {
                           name="Code2"
                           className={"h-4 w-4"}
                         />
-                        <span className="hidden md:block">API</span>
+                        <span className="hidden md:block">{t("flowPage.API")}</span>
                       </div>
                     </ApiModal>
                   )}

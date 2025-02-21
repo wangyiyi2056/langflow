@@ -18,8 +18,10 @@ import {
   CardTitle,
 } from "../../../../components/ui/card";
 import i18n from "@/locales/i18n";
+import { useTranslation } from "react-i18next";
 
 const LanguagePage = () => {
+  const { t } = useTranslation();
   // 初始化时优先读取本地存储，没有则使用系统语言
   const [currentLang, setCurrentLang] = useState<string>(
     localStorage.getItem('lang') || 'system'
@@ -41,7 +43,7 @@ const LanguagePage = () => {
 
   // 可用语言选项（可扩展）
   const languageOptions = [
-    { value: 'system', label: '跟随系统' },
+    { value: 'system', label: t("settingsPage.SYSTEM") },
     { value: 'en', label: 'English' },
     { value: 'zh', label: '中文' }
   ];
@@ -51,14 +53,14 @@ const LanguagePage = () => {
       <div className="flex w-full items-start gap-6">
         <div className="flex w-full flex-col">
           <h2 className="flex items-center text-lg font-semibold tracking-tight">
-            Language
+            {t("settingsPage.LANGUAGE")}
             <ForwardedIconComponent
               name="Languages"
               className="ml-2 h-5 w-5 text-primary"
             />
           </h2>
           <p className="text-sm text-muted-foreground">
-            Manage the language settings for Langflow.
+            {t("settingsPage.LANGUAGE_DSC")}
           </p>
         </div>
       </div>
@@ -69,7 +71,7 @@ const LanguagePage = () => {
       >
         <Card x-chunk="dashboard-04-chunk-2" id="api">
           <CardHeader>
-            <CardTitle>Interface language</CardTitle> 
+            <CardTitle>{t("settingsPage.INTERFACE")}{t("settingsPage.LANGUAGE")}</CardTitle> 
           </CardHeader>
           <CardContent>
           <Select

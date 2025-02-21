@@ -5,6 +5,7 @@ import { cn } from "@/utils/utils";
 import IconComponent from "../../../components/common/genericIconComponent";
 import { ChatViewWrapperProps } from "../types/chat-view-wrapper";
 import ChatView from "./chatView/chat-view";
+import { useTranslation } from "react-i18next";
 
 export const ChatViewWrapper = ({
   selectedViewField,
@@ -22,6 +23,7 @@ export const ChatViewWrapper = ({
   canvasOpen,
   setOpen,
 }: ChatViewWrapperProps) => {
+  const { t } = useTranslation();
   return (
     <div
       className={cn(
@@ -50,7 +52,7 @@ export const ChatViewWrapper = ({
                 className="h-[18px] w-[18px] text-ring"
               />
             </Button>
-            <div className="font-semibold">Playground</div>
+            <div className="font-semibold">{t("flowPage.PLAYGROUND")}</div>
           </div>
         </div>
         <div
@@ -60,7 +62,7 @@ export const ChatViewWrapper = ({
             isPlayground ? "right-2 top-4" : "right-12 top-2",
           )}
         >
-          <ShadTooltip side="bottom" styleClasses="z-50" content="New Chat">
+          <ShadTooltip side="bottom" styleClasses="z-50" content={t("flowPage.NEW_CHAT")}>
             <Button
               className="mr-2 h-[32px] w-[32px] hover:bg-secondary-hover"
               variant="ghost"

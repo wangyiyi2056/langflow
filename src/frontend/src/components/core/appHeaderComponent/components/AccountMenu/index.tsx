@@ -9,7 +9,6 @@ import useAuthStore from "@/stores/authStore";
 import { useDarkStore } from "@/stores/darkStore";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import GithubStarComponent from "../GithubStarButton";
 import {
   HeaderMenu,
   HeaderMenuItemButton,
@@ -20,14 +19,14 @@ import {
 } from "../HeaderMenu";
 import { ProfileIcon } from "../ProfileIcon";
 import ThemeButtons from "../ThemeButtons";
-
+import { useTranslation } from "react-i18next";
 export const AccountMenu = () => {
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const { customParam: id } = useParams();
   const version = useDarkStore((state) => state.version);
   const navigate = useCustomNavigate();
   const { mutate: mutationLogout } = useLogout();
-
+  const { t } = useTranslation();
   const { isAdmin, autoLogin } = useAuthStore((state) => ({
     isAdmin: state.isAdmin,
     autoLogin: state.autoLogin,
@@ -61,16 +60,11 @@ export const AccountMenu = () => {
                   data-testid="menu_version_button"
                   id="menu_version_button"
                 >
-                  Version {version}
+                  {t("header.VERSION")} {version}
                 </span>
               </div>
               {!ENABLE_DATASTAX_LANGFLOW && <ThemeButtons />}
             </div>
-            {ENABLE_DATASTAX_LANGFLOW ? (
-              <HeaderMenuItemLink newPage href={`/settings/org/${id}/overview`}>
-                Account Settings
-              </HeaderMenuItemLink>
-            ) : (
               <HeaderMenuItemButton
                 icon="arrow-right"
                 onClick={() => {
@@ -81,10 +75,9 @@ export const AccountMenu = () => {
                   data-testid="menu_settings_button"
                   id="menu_settings_button"
                 >
-                  Settings
+                  {t("header.SETTINGS")}
                 </span>
               </HeaderMenuItemButton>
-            )}
             {!ENABLE_DATASTAX_LANGFLOW && (
               <>
                 {isAdmin && !autoLogin && (
@@ -99,35 +92,26 @@ export const AccountMenu = () => {
                 )}
               </>
             )}
-            {ENABLE_DATASTAX_LANGFLOW ? (
-              <HeaderMenuItemButton onClick={() => setIsFeedbackOpen(true)}>
+              <HeaderMenuItemButton
+                icon="arrow-right"
+                onClick={() => {
+                  navigate("/store");
+                }}
+              >
                 <span
-                  data-testid="menu_feedback_button"
-                  id="menu_feedback_button"
+                  data-testid="menu_settings_button"
+                  id="menu_settings_button"
                 >
-                  Feedback
+                  {t("header.STORE")}
                 </span>
               </HeaderMenuItemButton>
-            ) : (
               <HeaderMenuItemLink newPage href="https://docs.langflow.org">
                 <span data-testid="menu_docs_button" id="menu_docs_button">
-                  Docs
+                  {t("header.DOCS")}
                 </span>
               </HeaderMenuItemLink>
-            )}
           </HeaderMenuItemsSection>
-          <HeaderMenuItemsSection>
-            {ENABLE_DATASTAX_LANGFLOW ? (
-              <HeaderMenuItemLink
-                newPage
-                href="https://github.com/langflow-ai/langflow"
-              >
-                <div className="-my-2 mr-2 flex w-full items-center justify-between">
-                  <div className="text-sm">Star the repo</div>
-                  <GithubStarComponent />
-                </div>
-              </HeaderMenuItemLink>
-            ) : (
+          {/* <HeaderMenuItemsSection>
               <HeaderMenuItemLink
                 newPage
                 href="https://github.com/langflow-ai/langflow/discussions"
@@ -136,7 +120,6 @@ export const AccountMenu = () => {
                   Share Feedback on Github
                 </span>
               </HeaderMenuItemLink>
-            )}
             <HeaderMenuItemLink newPage href="https://twitter.com/langflow_ai">
               <span data-testid="menu_twitter_button" id="menu_twitter_button">
                 Follow Langflow on X
@@ -147,7 +130,7 @@ export const AccountMenu = () => {
                 Join the Langflow Discord
               </span>
             </HeaderMenuItemLink>
-          </HeaderMenuItemsSection>
+          </HeaderMenuItemsSection> */}
           {ENABLE_DATASTAX_LANGFLOW ? (
             <HeaderMenuItemsSection>
               <HeaderMenuItemLink href="/session/logout" icon="log-out">

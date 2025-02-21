@@ -2,6 +2,7 @@ import { ForwardedIconComponent } from "@/components/common/genericIconComponent
 import { Input } from "@/components/ui/input";
 import { memo } from "react";
 import ShortcutDisplay from "../../../nodeToolbarComponent/shortcutDisplay";
+import { useTranslation } from "react-i18next";
 
 export const SearchInput = memo(function SearchInput({
   searchInputRef,
@@ -18,6 +19,7 @@ export const SearchInput = memo(function SearchInput({
   handleInputBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
+  const { t } = useTranslation();
   return (
     <div className="relative w-full flex-1">
       <ForwardedIconComponent
@@ -37,7 +39,7 @@ export const SearchInput = memo(function SearchInput({
       />
       {!isInputFocused && search === "" && (
         <div className="pointer-events-none absolute inset-y-0 left-8 top-1/2 flex w-4/5 -translate-y-1/2 items-center justify-between gap-2 text-sm text-muted-foreground">
-          Search{" "}
+          {t("flowPage.SEARCH")}
           <span>
             <ShortcutDisplay sidebar shortcut="/" />
           </span>

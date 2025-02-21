@@ -1,6 +1,7 @@
 import IconComponent from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 export const AddFolderButton = ({
   onClick,
@@ -10,10 +11,12 @@ export const AddFolderButton = ({
   onClick: () => void;
   disabled: boolean;
   loading: boolean;
-}) => (
-  <ShadTooltip content="Create new folder" styleClasses="z-50">
-    <Button
-      variant="ghost"
+}) => {
+  const { t } = useTranslation();
+  return (
+    <ShadTooltip content={t("folderSidebar.CREATE_NEW_FOLDER")} styleClasses="z-50">
+      <Button
+        variant="ghost"
       size="icon"
       className="h-7 w-7 border-0 text-zinc-500 hover:bg-zinc-200 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
       onClick={onClick}
@@ -21,7 +24,8 @@ export const AddFolderButton = ({
       disabled={disabled}
       loading={loading}
     >
-      <IconComponent name="Plus" className="h-4 w-4" />
-    </Button>
-  </ShadTooltip>
-);
+        <IconComponent name="Plus" className="h-4 w-4" />
+      </Button>
+    </ShadTooltip>
+  );
+};

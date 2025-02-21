@@ -6,7 +6,8 @@ import { BASE_URL_API } from "../../../../../../../../constants/constants";
 import { useDarkStore } from "../../../../../../../../stores/darkStore";
 import { cn } from "../../../../../../../../utils/utils";
 import usePreloadImages from "./hooks/use-preload-images";
-
+import { useTranslation } from "react-i18next";
+import { toUpperSnakeCase } from "@/utils/utils";
 type ProfilePictureChooserComponentProps = {
   profilePictures?: ProfilePicturesQueryResponse;
   loading: boolean;
@@ -20,6 +21,7 @@ export default function ProfilePictureChooserComponent({
   value,
   onChange,
 }: ProfilePictureChooserComponentProps) {
+  const { t } = useTranslation();
   const ref = useRef<HTMLButtonElement>(null);
   const dark = useDarkStore((state) => state.dark);
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -40,7 +42,7 @@ export default function ProfilePictureChooserComponent({
         Object.keys(profilePictures!).map((folder, index) => (
           <div className="flex flex-col gap-2" key={index}>
             <div className="edit-flow-arrangement">
-              <span className="font-normal">{folder}</span>
+              <span className="font-normal">{t(`settingsPage.${toUpperSnakeCase(folder)}`)}</span>
             </div>
             <div className="block overflow-hidden">
               <div className="flex items-center gap-1 overflow-x-auto rounded-lg bg-muted px-1 custom-scroll">

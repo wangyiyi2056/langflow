@@ -16,6 +16,7 @@ import ChatInput from "./chatInput/chat-input";
 import useDragAndDrop from "./chatInput/hooks/use-drag-and-drop";
 import { useFileHandler } from "./chatInput/hooks/use-file-handler";
 import ChatMessage from "./chatMessage/chat-message";
+import { useTranslation } from "react-i18next";
 
 const MemoizedChatMessage = memo(ChatMessage, (prevProps, nextProps) => {
   return (
@@ -34,6 +35,7 @@ export default function ChatView({
   focusChat,
   closeChat,
 }: chatViewProps): JSX.Element {
+  const { t } = useTranslation();
   const flowPool = useFlowStore((state) => state.flowPool);
   const inputs = useFlowStore((state) => state.inputs);
   const currentFlowId = useFlowsManagerStore((state) => state.currentFlowId);
@@ -192,14 +194,14 @@ export default function ChatView({
                 )}
                 <div className="flex flex-col items-center justify-center">
                   <h3 className="mt-2 pb-2 text-2xl font-semibold text-primary">
-                    New chat
+                    {t("flowPage.NEW_CHAT")}
                   </h3>
                   <p
                     className="text-lg text-muted-foreground"
                     data-testid="new-chat-text"
                   >
                     <TextEffectPerChar>
-                      Test your flow with a chat prompt
+                      {t("flowPage.NEW_CHAT_DSC")}
                     </TextEffectPerChar>
                   </p>
                 </div>

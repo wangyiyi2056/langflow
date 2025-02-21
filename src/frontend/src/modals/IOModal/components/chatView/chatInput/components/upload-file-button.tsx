@@ -1,6 +1,7 @@
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import ForwardedIconComponent from "../../../../../../components/common/genericIconComponent";
 import { Button } from "../../../../../../components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const UploadFileButton = ({
   fileInputRef,
@@ -8,11 +9,12 @@ const UploadFileButton = ({
   handleButtonClick,
   isBuilding,
 }) => {
+  const { t } = useTranslation();
   return (
     <ShadTooltip
       styleClasses="z-50"
       side="right"
-      content="Attach image (png, jpg, jpeg)"
+      content={t("flowPage.ATTACH_IMAGE")}
     >
       <div>
         <input

@@ -10,6 +10,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "../../ui/sidebar";
+import { useTranslation } from "react-i18next";
+import { toUpperSnakeCase } from "@/utils/utils";
 
 type SideBarButtonsComponentProps = {
   items: {
@@ -23,7 +25,7 @@ type SideBarButtonsComponentProps = {
 const SideBarButtonsComponent = ({ items }: SideBarButtonsComponentProps) => {
   const location = useLocation();
   const pathname = location.pathname;
-
+  const { t } = useTranslation();
   const isMobile = useIsMobile();
 
   return (
@@ -41,11 +43,11 @@ const SideBarButtonsComponent = ({ items }: SideBarButtonsComponentProps) => {
                         item.href ? pathname.endsWith(item.href) : false
                       }
                       data-testid={`sidebar-nav-${item.title}`}
-                      tooltip={item.title}
+                      tooltip={t(`settingsPage.${toUpperSnakeCase(item.title)}`)}
                     >
                       {item.icon}
                       <span className="block max-w-full truncate">
-                        {item.title}
+                        {t(`settingsPage.${toUpperSnakeCase(item.title)}`)}
                       </span>
                     </SidebarMenuButton>
                   </CustomLink>

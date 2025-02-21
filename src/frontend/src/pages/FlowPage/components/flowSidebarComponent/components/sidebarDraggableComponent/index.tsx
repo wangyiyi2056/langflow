@@ -23,7 +23,7 @@ import {
   getNodeId,
 } from "../../../../../../utils/reactflowUtils";
 import { cn, removeCountFromString } from "../../../../../../utils/utils";
-
+import { useTranslation } from "react-i18next";
 export const SidebarDraggableComponent = forwardRef(
   (
     {
@@ -57,6 +57,7 @@ export const SidebarDraggableComponent = forwardRef(
     },
     ref,
   ) => {
+    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     const { deleteFlow } = useDeleteFlow();
     const flows = useFlowsManagerStore((state) => state.flows);
@@ -165,7 +166,7 @@ export const SidebarDraggableComponent = forwardRef(
                     size="xq"
                     className="ml-1.5 shrink-0"
                   >
-                    Beta
+                    {t("flowPage.BETA")}
                   </Badge>
                 )}
                 {legacy && (
@@ -174,7 +175,7 @@ export const SidebarDraggableComponent = forwardRef(
                     size="xq"
                     className="ml-1.5 shrink-0"
                   >
-                    Legacy
+                    {t("flowPage.LEGACY")}
                   </Badge>
                 )}
               </div>
@@ -218,7 +219,7 @@ export const SidebarDraggableComponent = forwardRef(
                           name="Download"
                           className="relative top-0.5 mr-2 h-4 w-4"
                         />{" "}
-                        Download{" "}
+                        {t("flowPage.more.DOWNLOAD")}
                       </div>{" "}
                     </SelectItem>
                     {!official && (
@@ -228,7 +229,7 @@ export const SidebarDraggableComponent = forwardRef(
                             name="Trash2"
                             className="relative top-0.5 mr-2 h-4 w-4"
                           />{" "}
-                          Delete{" "}
+                          {t("flowPage.more.DELETE")}
                         </div>{" "}
                       </SelectItem>
                     )}

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import IconComponent from "../../../components/common/genericIconComponent";
 import { SidebarOpenViewProps } from "../types/sidebar-open-view";
 import SessionSelector from "./IOFieldView/components/session-selector";
-
+import { useTranslation } from "react-i18next";
 export const SidebarOpenView = ({
   sessions,
   setSelectedViewField,
@@ -12,6 +12,7 @@ export const SidebarOpenView = ({
   visibleSession,
   selectedViewField,
 }: SidebarOpenViewProps) => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="flex flex-col pl-3">
@@ -22,9 +23,9 @@ export const SidebarOpenView = ({
                 name="MessagesSquare"
                 className="h-[18px] w-[18px] text-ring"
               />
-              <div className="text-[13px] font-normal">Chat</div>
+              <div className="text-[13px] font-normal">{t("flowPage.CHAT")}</div>
             </div>
-            <ShadTooltip styleClasses="z-50" content="New Chat">
+            <ShadTooltip styleClasses="z-50" content={t("flowPage.NEW_CHAT")}>
               <div>
                 <Button
                   data-testid="new-chat"

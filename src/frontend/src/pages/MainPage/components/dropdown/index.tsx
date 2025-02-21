@@ -5,7 +5,7 @@ import { FlowType } from "@/types/flow";
 import { downloadFlow } from "@/utils/reactflowUtils";
 import useDuplicateFlows from "../../hooks/use-handle-duplicate";
 import useSelectOptionsChange from "../../hooks/use-select-options-change";
-
+import { useTranslation } from "react-i18next";
 type DropdownComponentProps = {
   flowData: FlowType;
   setOpenDelete: (open: boolean) => void;
@@ -18,6 +18,7 @@ const DropdownComponent = ({
   setOpenDelete,
   handleEdit,
 }: DropdownComponentProps) => {
+  const { t } = useTranslation();
   const setSuccessData = useAlertStore((state) => state.setSuccessData);
   const setErrorData = useAlertStore((state) => state.setErrorData);
 
@@ -55,7 +56,7 @@ const DropdownComponent = ({
           aria-hidden="true"
           className="mr-2 h-4 w-4"
         />
-        Edit details
+        {t("basic.EDIT")}
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={(e) => {
@@ -70,7 +71,7 @@ const DropdownComponent = ({
           aria-hidden="true"
           className="mr-2 h-4 w-4"
         />
-        Download
+        {t("basic.DOWNLOAD")}
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={(e) => {
@@ -85,7 +86,7 @@ const DropdownComponent = ({
           aria-hidden="true"
           className="mr-2 h-4 w-4"
         />
-        Duplicate
+        {t("basic.DUPLICATE")}
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={(e) => {
@@ -99,7 +100,7 @@ const DropdownComponent = ({
           aria-hidden="true"
           className="mr-2 h-4 w-4"
         />
-        Delete
+        {t("basic.DELETE")}
       </DropdownMenuItem>
     </>
   );

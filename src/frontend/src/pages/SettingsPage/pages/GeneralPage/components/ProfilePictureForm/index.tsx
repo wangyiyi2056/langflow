@@ -15,6 +15,7 @@ import {
 } from "../../../../../../components/ui/card";
 import { gradients } from "../../../../../../utils/styleUtils";
 import ProfilePictureChooserComponent from "./components/profilePictureChooserComponent";
+import { useTranslation } from "react-i18next";
 
 type ProfilePictureFormComponentProps = {
   profilePicture: string;
@@ -30,6 +31,7 @@ const ProfilePictureFormComponent = ({
   handleGetProfilePictures,
   userData,
 }: ProfilePictureFormComponentProps) => {
+  const { t } = useTranslation();
   const { isLoading, data, isFetching } = useGetProfilePicturesQuery();
 
   return (
@@ -41,9 +43,9 @@ const ProfilePictureFormComponent = ({
     >
       <Card x-chunk="dashboard-04-chunk-1">
         <CardHeader>
-          <CardTitle>Profile Picture</CardTitle>
+          <CardTitle>{t("settingsPage.PROFILE_PICTURE")}</CardTitle>
           <CardDescription>
-            Choose the image that appears as your profile picture.
+            {t("settingsPage.PROFILE_PICTURE_DSC")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -67,7 +69,7 @@ const ProfilePictureFormComponent = ({
         </CardContent>
         <CardFooter className="border-t px-6 py-4">
           <Form.Submit asChild>
-            <Button type="submit">Save</Button>
+            <Button type="submit">{t("basic.SAVE")}</Button>
           </Form.Submit>
         </CardFooter>
       </Card>

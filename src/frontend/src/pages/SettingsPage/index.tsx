@@ -10,11 +10,12 @@ import { useStoreStore } from "@/stores/storeStore";
 import { Outlet } from "react-router-dom";
 import ForwardedIconComponent from "../../components/common/genericIconComponent";
 import PageLayout from "../../components/common/pageLayout";
+import { useTranslation } from "react-i18next";
 
 export default function SettingsPage(): JSX.Element {
   const autoLogin = useAuthStore((state) => state.autoLogin);
   const hasStore = useStoreStore((state) => state.hasStore);
-
+  const { t } = useTranslation();
   // Hides the General settings if there is nothing to show
   const showGeneralSettings = ENABLE_PROFILE_ICONS || hasStore || !autoLogin;
 
@@ -113,8 +114,8 @@ export default function SettingsPage(): JSX.Element {
   return (
     <PageLayout
       backTo={"/"}
-      title="Settings"
-      description="Manage the general settings for Langflow."
+      title={t("header.SETTINGS")}
+      description={t("settingsPage.SETTINGS_DSC")}
     >
       <SidebarProvider width="15rem" defaultOpen={false}>
         <SideBarButtonsComponent items={sidebarNavItems} />

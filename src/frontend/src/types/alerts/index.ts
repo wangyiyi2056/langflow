@@ -20,10 +20,9 @@ export type SingleAlertComponentType = {
   removeAlert: (index: string) => void;
 };
 export type AlertDropdownType = {
-  children: JSX.Element;
-  notificationRef?: React.RefObject<HTMLDivElement>;
+  children: React.ReactNode;
   onClose?: () => void;
-};
+} & React.ComponentPropsWithoutRef<typeof Popover>;
 export type AlertItemType = {
   type: "notice" | "error" | "success";
   title: string;

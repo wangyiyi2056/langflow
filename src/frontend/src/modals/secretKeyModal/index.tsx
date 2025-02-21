@@ -8,12 +8,13 @@ import { createApiKey } from "../../controllers/API";
 import useAlertStore from "../../stores/alertStore";
 import { ApiKeyType } from "../../types/components";
 import BaseModal from "../baseModal";
-
+import { useTranslation } from "react-i18next";
 export default function SecretKeyModal({
   children,
   data,
   onCloseModal,
 }: ApiKeyType) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [apiKeyName, setApiKeyName] = useState(data?.apikeyname ?? "");
   const [apiKeyValue, setApiKeyValue] = useState("");
@@ -89,11 +90,13 @@ export default function SecretKeyModal({
               new one.
             </>
           ) : (
-            <>Create a secret API Key to use Langflow API.</>
+            <>
+              {t("settingsPage.CREATE_API_KEY_DSC")}
+            </>
           )
         }
       >
-        <span className="pr-2">Create API Key</span>
+        <span className="pr-2">{t("settingsPage.CREATE_API_KEY")}</span>
         <IconComponent
           name="Key"
           className="h-6 w-6 pl-1 text-foreground"
@@ -135,7 +138,7 @@ export default function SecretKeyModal({
                   onChange={({ target: { value } }) => {
                     setApiKeyName(value);
                   }}
-                  placeholder="Insert a name for your API Key"
+                  placeholder={t("settingsPage.API_KEY_NAME")}
                 />
               </Form.Control>
             </div>
@@ -143,7 +146,7 @@ export default function SecretKeyModal({
         )}
       </BaseModal.Content>
       <BaseModal.Footer
-        submit={{ label: renderKey ? "Done" : "Create Secret Key" }}
+        submit={{ label: renderKey ? t("basic.DONE") : t("settingsPage.CREATE_SECRET_KEY") }}
       />
     </BaseModal>
   );

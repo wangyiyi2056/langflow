@@ -1,13 +1,14 @@
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import IOModal from "@/modals/IOModal/new-modal";
-
+import { useTranslation } from "react-i18next";
 const PlaygroundButton = ({ hasIO, open, setOpen, canvasOpen }) => {
+  const { t } = useTranslation();
   const PlayIcon = () => (
     <ForwardedIconComponent name="Play" className="h-4 w-4 transition-all" />
   );
 
-  const ButtonLabel = () => <span className="hidden md:block">Playground</span>;
+  const ButtonLabel = () => <span className="hidden md:block">{t("flowPage.PLAYGROUND")}</span>;
 
   const ActiveButton = () => (
     <div
@@ -39,7 +40,7 @@ const PlaygroundButton = ({ hasIO, open, setOpen, canvasOpen }) => {
       <ActiveButton />
     </IOModal>
   ) : (
-    <ShadTooltip content="Add a Chat Input or Chat Output to use the playground">
+    <ShadTooltip content={t("flowPage.PLAYGROUND_TIP")}>
       <div>
         <DisabledButton />
       </div>

@@ -10,6 +10,7 @@ import { FolderType } from "@/pages/MainPage/entities";
 import { cn } from "@/utils/utils";
 import { handleSelectChange } from "../helpers/handle-select-change";
 import { FolderSelectItem } from "./folder-select-item";
+import { useTranslation } from "react-i18next";
 
 export const SelectOptions = ({
   item,
@@ -26,6 +27,7 @@ export const SelectOptions = ({
   handleSelectFolderToRename: (folder: FolderType) => void;
   checkPathName: (folderId: string) => boolean;
 }) => {
+  const { t } = useTranslation();
   return (
     <div>
       <Select
@@ -40,7 +42,7 @@ export const SelectOptions = ({
         }
         value=""
       >
-        <ShadTooltip content="Options" side="right" styleClasses="z-50">
+        <ShadTooltip content={t("basic.OPTIONS")} side="right" styleClasses="z-50">
           <SelectTrigger
             className="w-fit"
             id={`options-trigger-${item.name}`}
@@ -62,15 +64,15 @@ export const SelectOptions = ({
               value="rename"
               data-testid="btn-rename-folder"
             >
-              <FolderSelectItem name="Rename" iconName="SquarePen" />
+              <FolderSelectItem name={t("basic.RENAME")} iconName="SquarePen" />
             </SelectItem>
           )}
           <SelectItem value="download" data-testid="btn-download-folder">
-            <FolderSelectItem name="Download" iconName="Download" />
+            <FolderSelectItem name={t("basic.DOWNLOAD")} iconName="Download" />
           </SelectItem>
           {index > 0 && (
             <SelectItem value="delete" data-testid="btn-delete-folder">
-              <FolderSelectItem name="Delete" iconName="Trash2" />
+              <FolderSelectItem name={t("basic.DELETE")} iconName="Trash2" />
             </SelectItem>
           )}
         </SelectContent>

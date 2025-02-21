@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { debounce } from "lodash";
 import { useCallback, useEffect, useState } from "react";
-
+import { useTranslation } from "react-i18next";
 interface HeaderComponentProps {
   flowType: "flows" | "components";
   setFlowType: (flowType: "flows" | "components") => void;
@@ -28,7 +28,7 @@ const HeaderComponent = ({
   isEmptyFolder,
 }: HeaderComponentProps) => {
   const [debouncedSearch, setDebouncedSearch] = useState("");
-
+  const { t } = useTranslation();
   // Debounce the setSearch function from the parent
   const debouncedSetSearch = useCallback(
     debounce((value: string) => {
@@ -48,6 +48,7 @@ const HeaderComponent = ({
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDebouncedSearch(e.target.value);
   };
+  const flowTypes = [t("basic.COMPONENTS"), t("basic.FLOWS")];
 
   return (
     <>
@@ -66,13 +67,13 @@ const HeaderComponent = ({
             </SidebarTrigger>
           </div>
         </div>
-        {folderName}
+        {folderName === "My Projects" ? t("folderSidebar.MY_PROJECTS") : folderName}
       </div>
       {!isEmptyFolder && (
         <>
           <div className="flex flex-row-reverse pb-8">
             <div className="w-full border-b dark:border-border" />
-            {["components", "flows"].map((type) => (
+            {flowTypes.map((type) => (
               <Button
                 key={type}
                 unstyled
@@ -85,7 +86,9 @@ const HeaderComponent = ({
                     : "border-border text-muted-foreground hover:text-foreground"
                 } px-3 pb-2 text-sm`}
               >
-                <div className={flowType === type ? "-mb-px" : ""}>
+                <div 
+                  className={`${flowType === type ? "-mb-px" : ""} whitespace-nowrap`}
+                >
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </div>
               </Button>
@@ -98,7 +101,7 @@ const HeaderComponent = ({
                 icon="Search"
                 data-testid="search-store-input"
                 type="text"
-                placeholder={`Search ${flowType}...`}
+                placeholder={flowType === "flows" ? t("mainPage.SEARCH_FLOWS") : t("mainPage.SEARCH_COMPONENTS")}
                 className="mr-2"
                 value={debouncedSearch}
                 onChange={handleSearch}
@@ -135,7 +138,7 @@ const HeaderComponent = ({
                 ))}
               </div>
             </div>
-            <ShadTooltip content="New Flow" side="bottom">
+            <ShadTooltip content={t("mainPage.NEW_FLOW")} side="bottom">
               <Button
                 variant="default"
                 className="!px-3 md:!px-4 md:!pl-3.5"
@@ -149,7 +152,7 @@ const HeaderComponent = ({
                   className="h-4 w-4"
                 />
                 <span className="hidden whitespace-nowrap font-semibold md:inline">
-                  New Flow
+                  {t("mainPage.NEW_FLOW")}
                 </span>
               </Button>
             </ShadTooltip>

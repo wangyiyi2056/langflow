@@ -1,8 +1,9 @@
 import { LoadingComponentProps } from "../../../types/components";
-
+import { useTranslation } from "react-i18next";
 export default function LoadingComponent({
   remSize,
 }: LoadingComponentProps): JSX.Element {
+  const { t } = useTranslation();
   return (
     <div role="status" className="flex flex-col items-center justify-center">
       <svg
@@ -22,7 +23,7 @@ export default function LoadingComponent({
         />
       </svg>
       <br></br>
-      <span className="animate-pulse text-lg text-primary">Loading...</span>
+      <span className="animate-pulse text-lg text-primary">{t("basic.LOADING")}</span>
     </div>
   );
 }

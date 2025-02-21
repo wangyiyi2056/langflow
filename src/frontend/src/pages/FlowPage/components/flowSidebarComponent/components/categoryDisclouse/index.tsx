@@ -44,7 +44,6 @@ export const CategoryDisclosure = memo(function CategoryDisclosure({
     },
     [item.name, setOpenCategories],
   );
-
   return (
     <Disclosure
       open={openCategories.includes(item.name)}

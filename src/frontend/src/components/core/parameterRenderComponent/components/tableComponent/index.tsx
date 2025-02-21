@@ -1,11 +1,6 @@
 import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import {
-  DEFAULT_TABLE_ALERT_MSG,
-  DEFAULT_TABLE_ALERT_TITLE,
-  NO_COLUMN_DEFINITION_ALERT_DESCRIPTION,
-  NO_COLUMN_DEFINITION_ALERT_TITLE,
-} from "@/constants/constants";
+
 import { useDarkStore } from "@/stores/darkStore";
 import "@/style/ag-theme-shadcn.css"; // Custom CSS applied to the grid
 import { TableOptionsTypeAPI } from "@/types/api";
@@ -18,6 +13,7 @@ import cloneDeep from "lodash";
 import { ElementRef, forwardRef, useRef, useState } from "react";
 import TableOptions from "./components/TableOptions";
 import resetGrid from "./utils/reset-grid-columns";
+import { useTranslation } from "react-i18next";
 
 export interface TableComponentProps extends AgGridReactProps {
   columnDefs: NonNullable<ColDef<any, any>[]>;
@@ -46,13 +42,14 @@ const TableComponent = forwardRef<
 >(
   (
     {
-      alertTitle = DEFAULT_TABLE_ALERT_TITLE,
-      alertDescription = DEFAULT_TABLE_ALERT_MSG,
+      alertTitle,
+      alertDescription,
       displayEmptyAlert = true,
       ...props
     },
     ref,
   ) => {
+    const { t } = useTranslation();
     let colDef = props.columnDefs
       .filter((col) => !col.hide)
       .map((col, index) => {
@@ -190,8 +187,12 @@ const TableComponent = forwardRef<
               name="AlertCircle"
               className="h-5 w-5 text-primary"
             />
-            <AlertTitle>{alertTitle}</AlertTitle>
-            <AlertDescription>{alertDescription}</AlertDescription>
+            <AlertTitle>
+              {alertTitle || t("constants.DEFAULT_TABLE_ALERT_TITLE")}
+            </AlertTitle>
+            <AlertDescription>
+              {alertDescription || t("constants.DEFAULT_TABLE_ALERT_MSG")}
+            </AlertDescription>
           </Alert>
         </div>
       );
@@ -206,9 +207,9 @@ const TableComponent = forwardRef<
                 name="AlertCircle"
                 className="h-5 w-5 text-primary"
               />
-              <AlertTitle>{NO_COLUMN_DEFINITION_ALERT_TITLE}</AlertTitle>
+              <AlertTitle>{t("constants.NO_COLUMN_DEFINITION_ALERT_TITLE")}</AlertTitle>
               <AlertDescription>
-                {NO_COLUMN_DEFINITION_ALERT_DESCRIPTION}
+                {t("constants.NO_COLUMN_DEFINITION_ALERT_DESCRIPTION")}
               </AlertDescription>
             </Alert>
           </div>

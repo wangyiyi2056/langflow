@@ -19,6 +19,7 @@ import { ChatViewWrapper } from "./components/chat-view-wrapper";
 import ChatView from "./components/chatView/chat-view";
 import { SelectedViewField } from "./components/selected-view-field";
 import { SidebarOpenView } from "./components/sidebar-open-view";
+import { useTranslation } from "react-i18next";
 
 export default function IOModal({
   children,
@@ -28,6 +29,7 @@ export default function IOModal({
   isPlayground,
   canvasOpen,
 }: IOModalPropsType): JSX.Element {
+  const { t } = useTranslation();
   const allNodes = useFlowStore((state) => state.nodes);
   const setIOModalOpen = useFlowsManagerStore((state) => state.setIOModalOpen);
   const inputs = useFlowStore((state) => state.inputs).filter(
@@ -274,7 +276,7 @@ export default function IOModal({
                     </Button>
                   </ShadTooltip>
                   {sidebarOpen && (
-                    <div className="font-semibold">Playground</div>
+                    <div className="font-semibold">{t("flowPage.PLAYGROUND")}</div>
                   )}
                 </div>
                 {sidebarOpen && (
