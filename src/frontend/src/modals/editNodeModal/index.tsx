@@ -7,7 +7,8 @@ import { useDarkStore } from "../../stores/darkStore";
 import { NodeDataType } from "../../types/flow";
 import BaseModal from "../baseModal";
 import { EditNodeComponent } from "./components/editNodeComponent";
-
+import { useTranslation } from "react-i18next";
+import { toUpperSnakeCase } from "@/utils/utils";
 const EditNodeModal = ({
   open,
   setOpen,
@@ -18,7 +19,7 @@ const EditNodeModal = ({
   data: NodeDataType;
 }) => {
   const isDark = useDarkStore((state) => state.dark);
-
+  const { t } = useTranslation();
   const [nodeClass, setNodeClass] = useState<APIClassType>(data.node!);
 
   useEffect(() => {
@@ -37,8 +38,8 @@ const EditNodeModal = ({
       </BaseModal.Trigger>
       <BaseModal.Header description={data.node?.description!}>
         <span data-testid="node-modal-title" className="pr-2">
-          {data.node?.display_name ?? data.type}
-        </span>
+          {t(`flowPage.categories.draggableItem.${toUpperSnakeCase(data.node?.display_name)}`,data.node?.display_name) ?? data.type}
+        </span> 
         <div>
           <Badge size="sm" variant={isDark ? "gray" : "secondary"}>
             ID: {data.id}
@@ -50,7 +51,7 @@ const EditNodeModal = ({
       </BaseModal.Content>
       <BaseModal.Footer>
         <div className="flex w-full justify-end gap-2 pt-2">
-          <Button onClick={() => setOpen(false)}>Close</Button>
+          <Button onClick={() => setOpen(false)}>{t("basic.CLOSE")}</Button>
         </div>
       </BaseModal.Footer>
     </BaseModal>

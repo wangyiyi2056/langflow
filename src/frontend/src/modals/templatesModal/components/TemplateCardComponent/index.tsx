@@ -5,11 +5,14 @@ import IconComponent, {
   ForwardedIconComponent,
 } from "../../../../components/common/genericIconComponent";
 import { TemplateCardComponentProps } from "../../../../types/templates/types";
+import { useTranslation } from "react-i18next";
+import { toUpperSnakeCase } from "@/utils/utils";
 
 export default function TemplateCardComponent({
   example,
   onClick,
 }: TemplateCardComponentProps) {
+  const { t } = useTranslation();
   const swatchIndex =
     (example.gradient && !isNaN(parseInt(example.gradient))
       ? parseInt(example.gradient)
@@ -52,7 +55,7 @@ export default function TemplateCardComponent({
               className="line-clamp-3 font-semibold"
               data-testid={`template_${convertTestName(example.name)}`}
             >
-              {example.name}
+              {t(`mainPage.templates.flow.${toUpperSnakeCase(example.name)}`)}
             </h3>
             <ForwardedIconComponent
               name="ArrowRight"
@@ -60,7 +63,7 @@ export default function TemplateCardComponent({
             />
           </div>
           <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">
-            {example.description}
+          {t(`mainPage.templates.flow.${toUpperSnakeCase(example.name)}_DSC`)}
           </p>
         </div>
       </div>

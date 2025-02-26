@@ -21,9 +21,10 @@ export const ToolbarButton = memo(
     shortcut?: any;
     className?: string;
     dataTestId?: string;
-  }) => (
-    <ShadTooltip content={<ShortcutDisplay {...shortcut} />} side="top">
-      <Button
+  }) => {
+    return (
+      <ShadTooltip content={<ShortcutDisplay {...shortcut} />} side="top">
+        <Button
         className={cn("node-toolbar-buttons", className)}
         variant="ghost"
         onClick={onClick}
@@ -34,5 +35,6 @@ export const ToolbarButton = memo(
         {label && <span className="text-[13px] font-medium">{label}</span>}
       </Button>
     </ShadTooltip>
-  ),
+    );
+  },
 );

@@ -251,7 +251,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                 );
               }}
             >
-              {currentFolder?.name}
+              {currentFolder?.name === "My Projects" ? t("folderSidebar.MY_PROJECTS") : currentFolder?.name}
             </div>
           </div>
         )}

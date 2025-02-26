@@ -48,7 +48,7 @@ const HeaderComponent = ({
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDebouncedSearch(e.target.value);
   };
-  const flowTypes = [t("basic.COMPONENTS"), t("basic.FLOWS")];
+  const flowTypes = ['components', 'flows'];
 
   return (
     <>
@@ -79,6 +79,7 @@ const HeaderComponent = ({
                 unstyled
                 id={`${type}-btn`}
                 data-testid={`${type}-btn`}
+
                 onClick={() => setFlowType(type as "flows" | "components")}
                 className={`border-b ${
                   flowType === type
@@ -89,7 +90,7 @@ const HeaderComponent = ({
                 <div 
                   className={`${flowType === type ? "-mb-px" : ""} whitespace-nowrap`}
                 >
-                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                  {t(`basic.${type.toUpperCase()}`)}
                 </div>
               </Button>
             ))}

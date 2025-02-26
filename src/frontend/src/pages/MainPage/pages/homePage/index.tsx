@@ -15,8 +15,9 @@ import ListSkeleton from "../../components/listSkeleton";
 import useFileDrop from "../../hooks/use-on-file-drop";
 import ModalsComponent from "../../oldComponents/modalsComponent";
 import EmptyFolder from "../emptyFolder";
-
+import { useTranslation } from "react-i18next";
 const HomePage = ({ type }) => {
+  const { t } = useTranslation();
   const [view, setView] = useState<"grid" | "list">(() => {
     const savedView = localStorage.getItem("view");
     return savedView === "grid" || savedView === "list" ? savedView : "list";
@@ -35,7 +36,6 @@ const HomePage = ({ type }) => {
     folders[0]?.name ??
     "";
   const flows = useFlowsManagerStore((state) => state.flows);
-
   const { data: folderData, isLoading } = useGetFolderQuery({
     id: folderId ?? myCollectionId!,
     page: pageIndex,
@@ -145,16 +145,7 @@ const HomePage = ({ type }) => {
                     </div>
                   ) : (
                     <div className="pt-2 text-center text-sm text-secondary-foreground">
-                      No saved or custom components. Learn more about{" "}
-                      <a
-                        href="https://docs.langflow.org/components-custom-components"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="underline"
-                      >
-                        creating custom components
-                      </a>
-                      , or browse the store.
+                      {t("mainPage.NO_COMPONENTS")}
                     </div>
                   )}
                 </div>

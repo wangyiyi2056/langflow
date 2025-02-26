@@ -23,6 +23,30 @@ import { useGetTemplateStyle } from "../../utils/get-template-style";
 import { timeElapsed } from "../../utils/time-elapse";
 import DropdownComponent from "../dropdown";
 import { useTranslation } from "react-i18next";
+import {toUpperSnakeCase} from "@/utils/utils";
+import { TFunction } from "i18next";
+
+
+// 新增翻译处理函数
+const getTranslatedName = (name: string, t: TFunction, isDescription = false) => {
+  return name.replace(/^([^\d\(\s]+.*?)(\s*[\(\d].*)?$/, (_, basePart, numberPart) => {
+    // 生成翻译键并尝试翻译
+    const snakeKey = toUpperSnakeCase(basePart.trim());
+    // 根据是否是描述选择不同的翻译路径
+    const translationPath = isDescription 
+      ? `mainPage.templates.flow.${snakeKey}_DSC`
+      : `mainPage.templates.flow.${snakeKey}`;
+    const translated = t(translationPath);
+    
+    // 判断是否翻译成功（翻译结果不等于键名时才视为成功）
+    const isTranslated = translated !== translationPath;
+    
+    // 未翻译成功时保留原始名称的base部分
+    const displayBase = isTranslated ? translated : basePart.trim();
+    
+    return displayBase + (numberPart ? ` ${numberPart.trim()}` : '');
+  });
+};
 
 const GridComponent = ({ flowData }: { flowData: FlowType }) => {
   const navigate = useCustomNavigate();
@@ -100,7 +124,7 @@ const GridComponent = ({ flowData }: { flowData: FlowType }) => {
           <div className="flex w-full min-w-0 items-center justify-between">
             <div className="flex min-w-0 flex-col">
               <div className="text-md truncate font-semibold">
-                {flowData.name}
+                {getTranslatedName(flowData.name, t)}
               </div>
               <div className="truncate text-xs text-muted-foreground">
                 {t("mainPage.EDITED")} {timeElapsed(flowData.updated_at)} {t("mainPage.time.AGO")}
@@ -139,7 +163,7 @@ const GridComponent = ({ flowData }: { flowData: FlowType }) => {
         </div>
 
         <div className="line-clamp-2 h-full pt-5 text-sm text-primary">
-          {flowData.description}
+          {getTranslatedName(flowData.name, t, true)}
         </div>
       </Card>
 
@@ -151,7 +175,7 @@ const GridComponent = ({ flowData }: { flowData: FlowType }) => {
           description={descriptionModal}
           note={
             !flowData.is_component
-              ? "Deleting the selected flow will remove all associated messages."
+              ? t("messages.DELETE_FLOW_MSG")
               : ""
           }
         >

@@ -3,6 +3,7 @@ import Loading from "@/components/ui/loading";
 import { truncate } from "lodash";
 import { useState } from "react";
 import ConfirmationModal from "../confirmationModal";
+import { useTranslation } from "react-i18next";
 
 export function SaveChangesModal({
   onSave,
@@ -20,17 +21,19 @@ export function SaveChangesModal({
   autoSave: boolean;
 }): JSX.Element {
   const [saving, setSaving] = useState(false);
+  const { t } = useTranslation();
   return (
     <ConfirmationModal
       open={true}
       onClose={onCancel}
       destructiveCancel
       title={
-        (autoSave ? "Flow" : truncate(flowName, { length: 32 })) +
-        " has unsaved changes"
+        (autoSave ? t("basic.FLOW") : truncate(flowName, { length: 32 })) +
+        " " +
+        t("flowPage.HAS_UNSAVED_CHANGES")
       }
-      cancelText={autoSave ? undefined : "Exit anyway"}
-      confirmationText={autoSave ? undefined : "Save and Exit"}
+      cancelText={autoSave ? undefined : t("flowPage.EXIT_ANYWAY")}
+      confirmationText={autoSave ? undefined : t("flowPage.SAVE_AND_EXIT")}
       onConfirm={
         autoSave
           ? undefined
@@ -47,7 +50,7 @@ export function SaveChangesModal({
         {autoSave ? (
           <div className="mb-4 flex w-full items-center gap-3 rounded-md bg-muted px-4 py-2 text-muted-foreground">
             <Loading className="h-5 w-5" />
-            Saving your changes...
+            {t("flowPage.SAVING_YOUR_CHANGES")}
           </div>
         ) : (
           <>

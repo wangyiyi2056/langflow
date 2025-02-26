@@ -7,13 +7,17 @@ import multiAgent from "../../../../assets/temp-pat-3.png";
 import memoryChatbotHorizontal from "../../../../assets/temp-pat-m-1.png";
 import vectorRagHorizontal from "../../../../assets/temp-pat-m-2.png";
 import multiAgentHorizontal from "../../../../assets/temp-pat-m-3.png";
-
 import TemplateGetStartedCardComponent from "../TemplateGetStartedCardComponent";
-
+import { useTranslation } from "react-i18next";
 export default function GetStartedComponent() {
   const examples = useFlowsManagerStore((state) => state.examples);
-
+  const { t } = useTranslation();
   // Define the card data
+  const exampleList = examples.map(example => ({
+    name: example.name,
+    description: example.description
+  }));
+  console.log(exampleList);
   const cardData: CardData[] = [
     {
       bgImage: memoryChatbot,
@@ -40,8 +44,8 @@ export default function GetStartedComponent() {
 
   return (
     <div className="flex flex-1 flex-col gap-4 md:gap-8">
-      <BaseModal.Header description="Start with templates showcasing Langflow's Prompting, RAG, and Agent use cases.">
-        Get started
+      <BaseModal.Header description={t("mainPage.templates.GET_STARTED_DSC")}>
+        {t("mainPage.templates.GET_STARTED")}
       </BaseModal.Header>
       <div className="grid flex-1 grid-cols-1 gap-4 lg:grid-cols-3">
         {cardData.map((card, index) => (

@@ -2,8 +2,10 @@ export default {
   basic: {
     ALL: "All",
     FLOWS: "Flows",
+    FLOW: "Flow",
     FOLDERS: "Folders",
     COMPONENTS: "Components",
+    COMPONENT: "Component",
     BUNDLES: "Bundles",
     DELETE: "Delete",
     DOWNLOAD: "Download",
@@ -23,6 +25,8 @@ export default {
     UNDO: "Undo",
     REDO: "Redo",
     LOADING: "Loading...",
+    CLOSE: "Close",
+    RETRY: "Retry",
   },
   header: {
     NOTIFICATIONS: "Notifications",
@@ -63,6 +67,108 @@ export default {
     NEW_FLOW_MODAL: {
       GET_STARTED: "Get Started",
       TIP: "Select a template below",
+    },
+    NO_COMPONENTS:
+      "No saved or custom components. Learn more about creating custom components, or browse the store.",
+    templates: {
+      SEARCH: "Search...",
+      TEMPLATES: "Templates",
+      GET_STARTED: "Get Started",
+      GET_STARTED_DSC:
+        "Start with templates showcasing Prompting, RAG, and Agent use cases.",
+      BLANK_FLOW: "Blank Flow",
+      START_FROM_SCRATCH: "Start from scratch",
+      START_FROM_SCRATCH_DSC: "Begin with a fresh flow to build from scratch.",
+      ALL_TEMPLATES: "All Templates",
+      USE_CASES: "Use Cases",
+      ASSISTANTS: "Assistants",
+      CLASSIFICATION: "Classification",
+      CODING: "Coding",
+      CONTENT_GENERATION: "Content Generation",
+      QA: "Q&A",
+      METHODOLOGY: "Methodology",
+      PROMPTING: "Prompting",
+      RAG: "RAG",
+      AGENTS: "Agents",
+      flow: {
+        UNTITLED_DOCUMENT: "Untitled document",
+        UNTITLED_DOCUMENT_DSC: "Untitled document",
+        MARKET_RESEARCH: "Market Research",
+        MARKET_RESEARCH_DSC:
+          "Researches companies, extracts key business data, and presents structured information for efficient analysis. ",
+        MEMORY_CHATBOT: "Memory Chatbot",
+        MEMORY_CHATBOT_DSC:
+          "Create a chatbot that saves and references previous messages, enabling the model to maintain context throughout the conversation.",
+        SAAS_PRICING: "SaaS Pricing",
+        SAAS_PRICING_DSC:
+          "Calculate SaaS subscription price based on costs, profit margin, and subscribers using step-by-step method and Chain-of-Thought prompting. ",
+        VECTOR_STORE_RAG: "Vector Store RAG",
+        VECTOR_STORE_RAG_DSC:
+          "Load your data for chat context with Retrieval Augmented Generation.123",
+        BASIC_PROMPTING: "Basic Prompting",
+        BASIC_PROMPTING_DSC: "Perform basic prompting with an OpenAI model.",
+        TRAVEL_PLANNING_AGENTS: "Travel Planning Agents",
+        TRAVEL_PLANNING_AGENTS_DSC:
+          "Create a travel planning chatbot that uses specialized agents to craft personalized trip itineraries.",
+        BLOG_WRITER: "Blog Writer",
+        BLOG_WRITER_DSC:
+          "Auto-generate a customized blog post from instructions and referenced articles.",
+        PRICE_DEAL_FINDER: "Price Deal Finder",
+        PRICE_DEAL_FINDER_DSC:
+          "Searches and compares product prices across multiple e-commerce platforms. ",
+        TWITTER_THREAD_GENERATOR: "Twitter Thread Generator",
+        TWITTER_THREAD_GENERATOR_DSC:
+          "Transform structured inputs into engaging Twitter threads with this prompt-based flow, maintaining brand voice and technical accuracy.",
+        RESEARCH_AGENT: "Research Agent",
+        RESEARCH_AGENT_DSC:
+          "Agent that generates focused plans, conducts web searches, and synthesizes findings into comprehensive reports.",
+        SEQUENTIAL_TASKS_AGENTS: "Sequential Tasks Agents",
+        SEQUENTIAL_TASKS_AGENTS_DSC:
+          "This Agent is designed to systematically execute a series of tasks following a meticulously predefined sequence. By adhering to this structured order, the Agent ensures that each task is completed efficiently and effectively, optimizing overall performance and maintaining a high level of accuracy.",
+        INSTAGRAM_COPYWRITER: "Instagram Copywriter",
+        INSTAGRAM_COPYWRITER_DSC:
+          "Create engaging Instagram posts with AI-generated content and image prompts, streamlining social media content creation.",
+        FINANCIAL_REPORT_PARSER: "Financial Report Parser",
+        FINANCIAL_REPORT_PARSER_DSC:
+          "Extracts key financial metrics like Gross Profit, EBITDA, and Net Income from financial reports and structures them for easy analysis, using Structured Output Component",
+        SIMPLE_AGENT: "Simple Agent",
+        SIMPLE_AGENT_DSC: "A simple but powerful starter agent.",
+        MEETING_SUMMARY: "Meeting Summary",
+        MEETING_SUMMARY_DSC:
+          "An AI-powered meeting summary generator that transcribes and summarizes meetings using  AssemblyAI and OpenAI for quick insights.",
+        GMAIL_AGENT: "Gmail Agent",
+        GMAIL_AGENT_DSC:
+          "Interact with Gmail to send emails, create drafts, and fetch messages",
+        DOCUMENT_QA: "Document Q&A",
+        DOCUMENT_QA_DSC:
+          "Integrates PDF reading with a language model to answer document-specific questions. Ideal for small-scale texts, it facilitates direct queries with immediate insights.",
+        YOUTUBE_ANALYSIS: "Youtube Analysis",
+        YOUTUBE_ANALYSIS_DSC:
+          "The YouTube Analysis flow extracts video comments and transcripts, analyzing sentiment patterns and content themes.",
+        IMAGE_SENTIMENT_ANALYSIS: "Image Sentiment Analysis",
+        IMAGE_SENTIMENT_ANALYSIS_DSC:
+          "Analyzes images and categorizes them as positive, negative, or neutral using zero-shot learning.",
+        GRAPH_RAG: "Graph RAG",
+        GRAPH_RAG_DSC:
+          "Extracts links from web pages and processes the content using Graph RAG Chain with Maximal Marginal Relevance (MMR) traversal.",
+        SEO_KEYWORD_GENERATOR: "SEO Keyword Generator",
+        SEO_KEYWORD_GENERATOR_DSC:
+          "Generates targeted SEO keywords based on product information, pain points, and customer profiles for strategic marketing.",
+        RESEARCH_TRANSLATION_LOOP: "Research Translation Loop",
+        RESEARCH_TRANSLATION_LOOP_DSC:
+          "This template iterates over search results using LoopComponent and translates each result into Portuguese automatically. 🚀",
+        PORTFOLIO_WEBSITE_CODE_GENERATOR: "Portfolio Website Code Generator",
+        PORTFOLIO_WEBSITE_CODE_GENERATOR_DSC:
+          "This template transforms PDF or TXT resume documents into structured JSON, generating a portfolio website HTML code from the structured data.",
+        NEWS_AGGREGATOR: "News Aggregator",
+        NEWS_AGGREGATOR_DSC: "Extracts data and information from webpages.",
+        CUSTOM_COMPONENT_GENERATOR: "Custom Component Generator",
+        CUSTOM_COMPONENT_GENERATOR_DSC:
+          "Generates well-structured code for custom components following Langflow's specifications.",
+        PROMPT_CHAINING: "Prompt Chaining",
+        PROMPT_CHAINING_DSC:
+          "Connect multiple prompts in sequence where each output becomes the next stage's input, enabling step-by-step text processing.",
+      },
     },
   },
   settingsPage: {
@@ -197,6 +303,10 @@ export default {
     LEGACY: "Legacy",
     SEARCH: "Search",
     BUNDLES: "Bundles",
+    HAS_UNSAVED_CHANGES: "has unsaved changes",
+    EXIT_ANYWAY: "Exit anyway",
+    SAVE_AND_EXIT: "Save and Exit",
+    SAVING_YOUR_CHANGES: "Saving your changes...",
     more: {
       CODE: "Code",
       CONTROLS: "Controls",
@@ -216,6 +326,107 @@ export default {
       TOOL_MODE: "Tool Mode",
       DELETE: "Delete",
     },
+    categories: {
+      SAVED: "Saved",
+      INPUTS: "Inputs",
+      OUTPUTS: "Outputs",
+      PROMPTS: "Prompts",
+      DATA: "Data",
+      PROCESSING: "Processing",
+      MODELS: "Models",
+      VECTOR_STORES: "Vector Stores",
+      EMBEDDINGS: "Embeddings",
+      AGENTS: "Agents",
+      CHAINS: "Chains",
+      LOADERS: "Loaders",
+      LINK_EXTRACTORS: "Link Extractors",
+      MEMORIES: "Memories",
+      OUTPUT_PARSERS: "Output Parsers",
+      PROTOTYPES: "Prototypes",
+      RETRIEVERS: "Retrievers",
+      TEXT_SPLITTERS: "Text Splitters",
+      TOOLKITS: "Toolkits",
+      TOOLS: "Tools",
+      LOGIC: "Logic",
+      HELPERS: "Helpers",
+      draggableItem: {
+        // Inputs
+        CHAT_INPUT: "Chat Input",
+        CHAT_OUTPUT: "Chat Output",
+        //Outputs
+        TEXT_INPUT: "Text Input",
+        TEXT_OUTPUT: "Text Output",
+        // Prompts
+        PROMPT: "Prompt",
+        // Data
+        API_REQUEST: "API Request",
+        DIRECTORY: "Directory",
+        FILE: "File",
+        LOAD_CSV: "Load CSV",
+        LOAD_JSON: "Load JSON",
+        SQL_QUERY: "SQL Query",
+        URL: "URL",
+        WEBHOOK: "Webhook",
+        //Processing
+        ALTER_METADATA: "Alter Metadata",
+        COMBINE_DATA: "Combine Data",
+        COMBINE_TEXT: "Combine Text",
+        DATA_DATAFRAME: "Data + DataFrame",
+        DATA_TO_MESSAGE: "Data to Message",
+        DATAFRAME_OPERATIONS: "DataFrame Operations",
+        FILTER_DATA: "Filter Data",
+        FILTER_VALUES: "Filter Values",
+        JSON_CLEANER: "JSON Cleaner",
+        LLM_ROUTER: "LLM Router",
+        MESSAGE_TO_DATA: "Message to Data",
+        PARSE_DATAFRAME: "Parse DataFrame",
+        SAVE_TO_FILE: "Save to File",
+        SPLIT_TEXT: "Split Text",
+        UPDATE_DATA: "Update Data",
+        // Agent
+        AGENT: "Agent",
+        // Logic
+        IF_ELSE: "If-Else",
+        LISTEN: "Listen",
+        LOOP: "Loop",
+        NOTIFY: "Notify",
+        PASS: "Pass",
+        RUN_FLOW: "Run Flow",
+        // Helpers
+        BATCH_RUN: "Batch Run",
+        CURRENT_DATE: "Current Date",
+        ID_GENERATOR: "ID Generator",
+        MESSAGE_HISTORY: "Message History",
+        MESSAGE_STORE: "Message Store",
+        STRUCTURED_OUTPUT: "Structured Output",
+      },
+    },
+    bundles: {
+      APIFY: "Apify",
+      LANGCHAIN: "LangChain",
+      AGENTQL: "AgentQL",
+      ASSEMBLYAI: "AssemblyAI",
+      DATASTAXX: "DataStax",
+      OLIVYA: "Olivya",
+      LANGWATCH: "LangWatch",
+      NOTION: "Notion",
+      NEEDLE: "Needle",
+      NVIDIA: "NVIDIA",
+      VECTARA: "Vectara",
+      ICOSA: "Icosa",
+      GOOGLE: "Google",
+      CREWAI: "CrewAI",
+      NOTDIAMOND: "NotDiamond",
+      COMPOSIO: "Composio",
+      COHERE: "Cohere",
+      FIRECRAWL: "Firecrawl",
+      UNSTRUCTURED: "Unstructured",
+      GIT: "Git",
+      CONFLUENCE: "Confluence",
+      MEM0: "Mem0",
+      YOUTUBE: "Youtube",
+      SCRAPEGRAPH: "ScrapeGraph",
+    },
   },
   folderSidebar: {
     FOLDERS: "Folders",
@@ -228,7 +439,12 @@ export default {
     DELETE_MSG: "Are you sure you want to delete the selected",
     DELETE_INFO:
       "Deleting the selected folder will remove all associated flows and components.",
+    DELETE_FLOW_MSG:
+      "Deleting the selected flow will remove all associated messages.",
     DELETE_NOTE: "Note: This action is irreversible.",
+    EMPTY_SEARCH_COMPONENT: "No components found.",
+    CLEAR_SEARCH: "Clear your search",
+    ADDITIONAL_TEXT: "or filter and try a different query.",
   },
   constants: {
     ZERO_NOTIFICATIONS: "No new notifications",
@@ -251,5 +467,11 @@ export default {
       "There are no Flows with the selected filters.",
     EXPORT_CODE_DIALOG:
       "Generate the code to integrate your flow into an external application.",
+    FETCH_ERROR_MESSAGE: "Couldn't establish a connection.",
+    FETCH_ERROR_DESCRIPION:
+      "Check if everything is working properly and try again.",
+    TIMEOUT_ERROR_MESSAGE:
+      "Please wait a few moments while the server processes your request.",
+    TIMEOUT_ERROR_DESCRIPION: "Server is busy.",
   },
 };

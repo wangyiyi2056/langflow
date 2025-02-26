@@ -11,7 +11,7 @@ import { useFolderStore } from "../../../../stores/foldersStore";
 import { TemplateContentProps } from "../../../../types/templates/types";
 import { updateIds } from "../../../../utils/reactflowUtils";
 import { TemplateCategoryComponent } from "../TemplateCategoryComponent";
-
+import { useTranslation } from "react-i18next";
 export default function TemplateContentComponent({
   currentTab,
   categories,
@@ -21,6 +21,7 @@ export default function TemplateContentComponent({
       example.tags?.includes(currentTab ?? "") ||
       currentTab === "all-templates",
   );
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredExamples, setFilteredExamples] = useState(examples);
   const addFlow = useAddFlow();
@@ -82,7 +83,7 @@ export default function TemplateContentComponent({
         />
         <Input
           type="search"
-          placeholder="Search..."
+          placeholder={t("mainPage.templates.SEARCH")}
           data-testid="search-input-template"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

@@ -12,13 +12,13 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { useIsMobile } from "../../../../hooks/use-mobile";
-
 import { cn } from "@/utils/utils";
 import { NavProps } from "../../../../types/templates/types";
-
+import { useTranslation } from "react-i18next";
+import { toUpperSnakeCase } from "@/utils/utils";
 export function Nav({ categories, currentTab, setCurrentTab }: NavProps) {
   const isMobile = useIsMobile();
-
+  const { t } = useTranslation();
   return (
     <Sidebar collapsible={isMobile ? "icon" : "none"} className="max-w-[230px]">
       <SidebarContent className="gap-0 p-2">
@@ -37,7 +37,7 @@ export function Nav({ categories, currentTab, setCurrentTab }: NavProps) {
               "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
             )}
           >
-            Templates
+            {t("mainPage.templates.TEMPLATES")}
           </div>
         </div>
 
@@ -50,7 +50,7 @@ export function Nav({ categories, currentTab, setCurrentTab }: NavProps) {
                   : "mb-1 text-sm font-semibold text-muted-foreground"
               }`}
             >
-              {category.title}
+              {t(`mainPage.templates.${toUpperSnakeCase(category.title)}`)}
             </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
@@ -73,7 +73,9 @@ export function Nav({ categories, currentTab, setCurrentTab }: NavProps) {
                       <span
                         data-testid={`category_title_${convertTestName(link.title)}`}
                       >
-                        {link.title}
+                        {t(
+                          `mainPage.templates.${toUpperSnakeCase(link.title)}`,
+                        )}
                       </span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

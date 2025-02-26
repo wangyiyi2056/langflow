@@ -1,6 +1,8 @@
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import { removeCountFromString } from "@/utils/utils";
 import SidebarDraggableComponent from "../sidebarDraggableComponent";
+import { useTranslation } from "react-i18next";
+import { toUpperSnakeCase } from "@/utils/utils";
 
 const SidebarItemsList = ({
   item,
@@ -10,6 +12,7 @@ const SidebarItemsList = ({
   onDragStart,
   sensitiveSort,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-1 py-2">
       {Object.keys(dataFilter[item.name])
@@ -22,7 +25,6 @@ const SidebarItemsList = ({
         })
         .map((SBItemName, idx) => {
           const currentItem = dataFilter[item.name][SBItemName];
-
           return (
             <ShadTooltip
               content={currentItem.display_name}
@@ -42,7 +44,7 @@ const SidebarItemsList = ({
                 color={nodeColors[item.name]}
                 itemName={SBItemName}
                 error={!!currentItem.error}
-                display_name={currentItem.display_name}
+                display_name={t(`flowPage.categories.draggableItem.${toUpperSnakeCase(currentItem.display_name)}`,{ defaultValue: currentItem.display_name })}
                 official={currentItem.official === false ? false : true}
                 beta={currentItem.beta ?? false}
                 legacy={currentItem.legacy ?? false}

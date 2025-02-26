@@ -12,6 +12,7 @@ import BaseModal from "../baseModal";
 import GetStartedComponent from "./components/GetStartedComponent";
 import TemplateContentComponent from "./components/TemplateContentComponent";
 import { Nav } from "./components/navComponent";
+import { useTranslation } from "react-i18next";
 
 export default function TemplatesModal({
   open,
@@ -21,7 +22,7 @@ export default function TemplatesModal({
   const addFlow = useAddFlow();
   const navigate = useCustomNavigate();
   const { folderId } = useParams();
-
+  const { t } = useTranslation();
   // Define categories and their items
   const categories: Category[] = [
     {
@@ -42,7 +43,7 @@ export default function TemplatesModal({
           icon: "Newspaper",
           id: "content-generation",
         },
-        { title: "Q&A", icon: "Database", id: "q-a" },
+        { title: "QA", icon: "Database", id: "q-a" },
         // { title: "Summarization", icon: "Bot", id: "summarization" },
         // { title: "Web Scraping", icon: "CodeXml", id: "web-scraping" },
       ],
@@ -79,9 +80,11 @@ export default function TemplatesModal({
               <BaseModal.Footer>
                 <div className="flex w-full flex-col justify-between gap-4 pb-4 sm:flex-row sm:items-center">
                   <div className="flex flex-col items-start justify-center">
-                    <div className="font-semibold">Start from scratch</div>
+                    <div className="font-semibold">
+                      {t("mainPage.templates.START_FROM_SCRATCH")}
+                    </div>
                     <div className="text-sm text-muted-foreground">
-                      Begin with a fresh flow to build from scratch.
+                      {t("mainPage.templates.START_FROM_SCRATCH_DSC")}
                     </div>
                   </div>
                   <Button
@@ -101,7 +104,7 @@ export default function TemplatesModal({
                       name="Plus"
                       className="h-4 w-4 shrink-0"
                     />
-                    Blank Flow
+                    {t("mainPage.templates.BLANK_FLOW")}
                   </Button>
                 </div>
               </BaseModal.Footer>

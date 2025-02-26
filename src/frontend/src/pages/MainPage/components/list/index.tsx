@@ -23,6 +23,29 @@ import { useGetTemplateStyle } from "../../utils/get-template-style";
 import { timeElapsed } from "../../utils/time-elapse";
 import DropdownComponent from "../dropdown";
 import { useTranslation } from "react-i18next";
+import { toUpperSnakeCase } from "@/utils/utils";
+import { TFunction } from "i18next";
+
+// 新增翻译处理函数
+const getTranslatedName = (name: string, t: TFunction, isDescription = false) => {
+  return name.replace(/^([^\d\(\s]+.*?)(\s*[\(\d].*)?$/, (_, basePart, numberPart) => {
+    // 生成翻译键并尝试翻译
+    const snakeKey = toUpperSnakeCase(basePart.trim());
+    // 根据是否是描述选择不同的翻译路径
+    const translationPath = isDescription 
+      ? `mainPage.templates.flow.${snakeKey}_DSC`
+      : `mainPage.templates.flow.${snakeKey}`;
+    const translated = t(translationPath);
+    
+    // 判断是否翻译成功（翻译结果不等于键名时才视为成功）
+    const isTranslated = translated !== translationPath;
+    
+    // 未翻译成功时保留原始名称的base部分
+    const displayBase = isTranslated ? translated : basePart.trim();
+    
+    return displayBase + (numberPart ? ` ${numberPart.trim()}` : '');
+  });
+};
 
 const ListComponent = ({ flowData }: { flowData: FlowType }) => {
   const navigate = useCustomNavigate();
@@ -111,7 +134,9 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
           <div className="flex min-w-0 flex-col justify-start">
             <div className="line-clamp-1 flex min-w-0 items-baseline truncate max-md:flex-col">
               <div className="text-md flex truncate pr-2 font-semibold max-md:w-full">
-                <span className="truncate">{flowData.name}</span>
+                <span className="truncate">
+                  {getTranslatedName(flowData.name, t)}
+                </span>
               </div>
               <div className="item-baseline flex text-xs text-muted-foreground">
                 {t("mainPage.EDITED")} {timeElapsed(flowData.updated_at)} {t("mainPage.time.AGO")}
@@ -119,7 +144,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
             </div>
             <div className="overflow-hidden text-sm text-primary">
               <span className="block max-w-[110ch] truncate">
-                {flowData.description}
+                {getTranslatedName(flowData.name, t, true)}
               </span>
             </div>
           </div>
@@ -170,7 +195,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
           description={descriptionModal}
           note={
             !flowData.is_component
-              ? "Deleting the selected flow will remove all associated messages."
+              ? t("messages.DELETE_FLOW_MSG")
               : ""
           }
         >
