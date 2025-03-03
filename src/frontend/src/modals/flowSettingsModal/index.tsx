@@ -5,12 +5,12 @@ import { cloneDeep } from "lodash";
 import { useEffect, useState } from "react";
 import IconComponent from "../../components/common/genericIconComponent";
 import EditFlowSettings from "../../components/core/editFlowSettingsComponent";
-import { SETTINGS_DIALOG_SUBTITLE } from "../../constants/constants";
 import useFlowsManagerStore from "../../stores/flowsManagerStore";
 import { FlowSettingsPropsType } from "../../types/components";
 import { FlowType } from "../../types/flow";
 import { isEndpointNameValid } from "../../utils/utils";
 import BaseModal from "../baseModal";
+import { useTranslation } from "react-i18next";
 
 export default function FlowSettingsModal({
   open,
@@ -18,6 +18,7 @@ export default function FlowSettingsModal({
   flowData,
   details,
 }: FlowSettingsPropsType): JSX.Element {
+  const { t } = useTranslation();
   const saveFlow = useSaveFlow();
   const currentFlow = useFlowStore((state) => state.currentFlow);
   const setCurrentFlow = useFlowStore((state) => state.setCurrentFlow);
@@ -91,8 +92,8 @@ export default function FlowSettingsModal({
       size="smaller-h-full"
       onSubmit={handleClick}
     >
-      <BaseModal.Header description={SETTINGS_DIALOG_SUBTITLE}>
-        <span className="pr-2">Details</span>
+      <BaseModal.Header description={t("constants.SETTINGS_DIALOG_SUBTITLE")}>
+        <span className="pr-2">{t("mainPage.DETAILS")}</span>
         <IconComponent name="SquarePen" className="mr-2 h-4 w-4" />
       </BaseModal.Header>
       <BaseModal.Content>
@@ -109,7 +110,7 @@ export default function FlowSettingsModal({
 
       <BaseModal.Footer
         submit={{
-          label: "Save",
+          label: t("basic.SAVE"),
           dataTestId: "save-flow-settings",
           disabled: disableSave,
           loading: isSaving,

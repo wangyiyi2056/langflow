@@ -1,6 +1,7 @@
 import { convertTestName } from "@/components/common/storeCardComponent/utils/convert-test-name";
 import { Badge } from "@/components/ui/badge";
 import { nodeColorsName } from "@/utils/styleUtils";
+import { useTranslation } from "react-i18next";
 
 export default function HandleTooltipComponent({
   isInput,
@@ -17,13 +18,12 @@ export default function HandleTooltipComponent({
   isSameNode: boolean;
   left: boolean;
 }) {
+  const { t } = useTranslation();
   const tooltips = tooltipTitle.split("\n");
-  const plural = tooltips.length > 1 ? "s" : "";
-
   return (
     <div className="font-medium">
       {isSameNode ? (
-        "Can't connect to the same node"
+        t("flowPage.SAME_NODE")
       ) : (
         <div className="flex items-center gap-1.5">
           {isConnecting ? (
@@ -32,13 +32,13 @@ export default function HandleTooltipComponent({
                 <span className="font-semibold">Connect</span> to
               </span>
             ) : (
-              <span>Incompatible with</span>
+              <span>{t("flowPage.INCOMPATIBLE_WITH")}</span>
             )
           ) : (
             <span className="text-xs">
               {isInput
-                ? `Input${plural} type${plural}`
-                : `Output${plural} type${plural}`}
+                ? `${t("flowPage.categories.INPUTS")} ${t("flowPage.categories.TYPE")}`
+                : `${t("flowPage.categories.OUTPUTS")} ${t("flowPage.categories.TYPE")}`}
               :{" "}
             </span>
           )}
@@ -59,17 +59,17 @@ export default function HandleTooltipComponent({
               {word}
             </Badge>
           ))}
-          {isConnecting && <span>{isInput ? `input` : `output`}</span>}
+          {isConnecting && <span>{isInput ? `${t("flowPage.categories.INPUTS")}` : `${t("flowPage.categories.OUTPUTS")}`}</span>}
         </div>
       )}
       {!isConnecting && (
         <div className="mt-2 flex flex-col gap-0.5 text-xs leading-6">
           <div>
-            <b>Drag</b> to connect compatible {!isInput ? "inputs" : "outputs"}
+            <b>{t("flowPage.DRAG")}</b> {t("flowPage.TO_CONNECT_COMPATIBLE")} {!isInput ? `${t("flowPage.categories.INPUTS")}` : `${t("flowPage.categories.OUTPUTS")}`}
           </div>
           <div>
-            <b>Click</b> to filter compatible {!isInput ? "inputs" : "outputs"}{" "}
-            and components
+            <b>{t("flowPage.CLICK")}</b> {t("flowPage.TO_FILTER_COMPATIBLE")} {!isInput ? `${t("flowPage.categories.INPUTS")}` : `${t("flowPage.categories.OUTPUTS")}`}
+            {t("flowPage.AND_COMPONENTS")}
           </div>
         </div>
       )}

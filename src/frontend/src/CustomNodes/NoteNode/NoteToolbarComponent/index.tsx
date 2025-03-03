@@ -44,7 +44,6 @@ const NoteToolbarComponent = memo(function NoteToolbarComponent({
 
   const takeSnapshot = useFlowsManagerStore((state) => state.takeSnapshot);
   const shortcuts = useShortcutsStore((state) => state.shortcuts);
-
   const openDocs = useCallback(() => {
     if (data.node?.documentation) {
       return openInNewTab(data.node?.documentation);
@@ -94,7 +93,6 @@ const NoteToolbarComponent = memo(function NoteToolbarComponent({
       paste,
     ],
   );
-
   // Memoize the color picker background style
   const colorPickerStyle = useMemo(
     () => ({

@@ -159,7 +159,9 @@ export default function SessionSelector({
                     : "truncate-muted dark:truncate-canvas",
                 )}
               >
-                {session === currentFlowId ? "Default Session" : session}
+                {session === currentFlowId
+                  ? t("flowPage.DEFAULT_SESSION")
+                  : session}
               </div>
             </ShadTooltip>
           )}

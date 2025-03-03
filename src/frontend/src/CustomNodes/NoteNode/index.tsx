@@ -12,6 +12,7 @@ import { debounce } from "lodash";
 import { useEffect, useMemo, useRef, useState } from "react";
 import NodeDescription from "../GenericNode/components/NodeDescription";
 import NoteToolbarComponent from "./NoteToolbarComponent";
+import { useTranslation } from "react-i18next";
 
 const NOTE_NODE_PADDING = 25;
 const CHAR_LIMIT = 2500;
@@ -25,6 +26,7 @@ function NoteNode({
   data: NoteDataType;
   selected?: boolean;
 }) {
+  const { t } = useTranslation();
   const bgColor =
     Object.keys(COLOR_OPTIONS).find(
       (key) => key === data.node?.template.backgroundColor,
@@ -172,7 +174,7 @@ function NoteNode({
             nodeId={dataId}
             selected={selected}
             description={dataDescription}
-            emptyPlaceholder="Double-click to start typing or enter Markdown..."
+            emptyPlaceholder={t("flowPage.DOUBLE_CLICK_MARKDOWN")}
             placeholderClassName={
               COLOR_OPTIONS[bgColor] === null ? "" : "dark:!text-background"
             }

@@ -1,7 +1,8 @@
 import { cn } from "../../../utils/utils";
 import { Badge } from "../../ui/badge";
 import HorizontalScrollFadeComponent from "../horizontalScrollFadeComponent";
-
+import { useTranslation } from "react-i18next";
+import { toUpperSnakeCase } from "../../../utils/utils";
 export function TagsSelector({
   tags,
   disabled = false,
@@ -15,6 +16,7 @@ export function TagsSelector({
   selectedTags: any[];
   setSelectedTags: (tags: any[]) => void;
 }) {
+  const { t } = useTranslation();
   const updateTags = (tagName: string) => {
     const index = selectedTags.indexOf(tagName);
     let newArray =
@@ -53,7 +55,9 @@ export function TagsSelector({
                     : "",
                 )}
               >
-                {tag.name}
+                {t(`flowPage.categories.${toUpperSnakeCase(tag.name)}`, {
+                  defaultValue: tag.name,
+                })}
               </Badge>
             </button>
           ))

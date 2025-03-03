@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import IconComponent from "../../components/common/genericIconComponent";
 import { Button } from "../../components/ui/button";
 import { Textarea } from "../../components/ui/textarea";
@@ -10,7 +11,6 @@ import { textModalPropsType } from "../../types/components";
 import { handleKeyDown } from "../../utils/reactflowUtils";
 import { classNames } from "../../utils/utils";
 import BaseModal from "../baseModal";
-
 export default function ComponentTextModal({
   value,
   setValue,
@@ -20,6 +20,7 @@ export default function ComponentTextModal({
   password,
   changeVisibility,
 }: textModalPropsType): JSX.Element {
+  const { t } = useTranslation();
   const [modalOpen, setModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState(value);
 
@@ -98,7 +99,7 @@ export default function ComponentTextModal({
             }}
             type="submit"
           >
-            Finish Editing
+            {t("basic.FINISH_EDITING")}
           </Button>
         </div>
       </BaseModal.Footer>

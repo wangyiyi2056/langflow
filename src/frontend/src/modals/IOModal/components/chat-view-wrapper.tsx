@@ -35,7 +35,7 @@ export const ChatViewWrapper = ({
         {visibleSession && sessions.length > 0 && sidebarOpen && (
           <div className="hidden lg:block">
             {visibleSession === currentFlowId
-              ? "Default Session"
+              ? t("flowPage.DEFAULT_SESSION")
               : `${visibleSession}`}
           </div>
         )}

@@ -2,6 +2,7 @@ import TableAdvancedToggleCellRender from "@/components/core/parameterRenderComp
 import TableNodeCellRender from "@/components/core/parameterRenderComponent/components/tableComponent/components/tableNodeCellRender";
 import { ColDef, ValueGetterParams } from "ag-grid-community";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 const useColumnDefs = (
   nodeId: string,
@@ -9,10 +10,11 @@ const useColumnDefs = (
   isTweaks?: boolean,
   hideVisibility?: boolean,
 ) => {
+  const { t } = useTranslation();
   const columnDefs: ColDef[] = useMemo(() => {
     const colDefs: ColDef[] = [
       {
-        headerName: "Field Name",
+        headerName: t("flowPage.dialog.FIELD_NAME"),
         field: "display_name",
         valueGetter: (params) => {
           const templateParam = params.data;
@@ -29,7 +31,7 @@ const useColumnDefs = (
         cellClass: "no-border",
       },
       {
-        headerName: "Description",
+        headerName: t("flowPage.dialog.DESCRIPTION"),
         field: "info",
         tooltipField: "info",
         wrapText: true,
@@ -39,7 +41,7 @@ const useColumnDefs = (
         cellClass: "no-border",
       },
       {
-        headerName: "Value",
+        headerName: t("flowPage.dialog.VALUE"),
         field: "value",
         cellRenderer: TableNodeCellRender,
         valueGetter: (params: ValueGetterParams) => {
@@ -61,7 +63,7 @@ const useColumnDefs = (
     ];
     if (!hideVisibility) {
       colDefs.push({
-        headerName: "Show",
+        headerName: t("flowPage.dialog.SHOW"),
         field: "advanced",
         cellRenderer: TableAdvancedToggleCellRender,
         valueGetter: (params: ValueGetterParams) => {

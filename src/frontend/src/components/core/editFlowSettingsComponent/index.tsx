@@ -4,6 +4,8 @@ import { cn, isEndpointNameValid } from "../../../utils/utils";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { Textarea } from "../../ui/textarea";
+import { toUpperSnakeCase } from "../../../utils/utils";
+import { useTranslation } from "react-i18next";
 
 export const EditFlowSettings: React.FC<InputProps> = ({
   name,
@@ -15,6 +17,7 @@ export const EditFlowSettings: React.FC<InputProps> = ({
   setDescription,
   setEndpointName,
 }: InputProps): JSX.Element => {
+  const { t } = useTranslation();
   const [isMaxLength, setIsMaxLength] = useState(false);
   const [validEndpointName, setValidEndpointName] = useState(true);
   const [isInvalidName, setIsInvalidName] = useState(false);
@@ -57,7 +60,7 @@ export const EditFlowSettings: React.FC<InputProps> = ({
     <>
       <Label>
         <div className="edit-flow-arrangement">
-          <span className="font-medium">Name{setName ? "" : ":"}</span>{" "}
+          <span className="font-medium">{t("mainPage.NAME")}  {setName ? "" : ":"}</span>{" "}
           {isMaxLength && (
             <span className="edit-flow-span">Character limit reached</span>
           )}
@@ -74,7 +77,7 @@ export const EditFlowSettings: React.FC<InputProps> = ({
             type="text"
             name="name"
             value={name ?? ""}
-            placeholder="Flow name"
+            placeholder={t("mainPage.NAME")}
             id="name"
             maxLength={maxLength}
             onDoubleClickCapture={(event) => {
@@ -84,14 +87,14 @@ export const EditFlowSettings: React.FC<InputProps> = ({
           />
         ) : (
           <span className="font-normal text-muted-foreground word-break-break-word">
-            {name}
+            {t("mainPage.NAME")}
           </span>
         )}
       </Label>
       <Label>
         <div className="edit-flow-arrangement mt-3">
           <span className="font-medium">
-            Description{setDescription ? " (optional)" : ":"}
+            {t("mainPage.DESCRIPTION")}
           </span>
         </div>
         {setDescription ? (
@@ -114,7 +117,7 @@ export const EditFlowSettings: React.FC<InputProps> = ({
               description === "" ? "font-light italic" : "",
             )}
           >
-            {description === "" ? "No description" : description}
+            {description === "" ? "No description" : ''}
           </div>
         )}
       </Label>

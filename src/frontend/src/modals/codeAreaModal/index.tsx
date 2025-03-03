@@ -10,6 +10,7 @@ import useFlowStore from "@/stores/flowStore";
 import { useEffect, useRef, useState } from "react";
 import AceEditor from "react-ace";
 import ReactAce from "react-ace/lib/ace";
+import { useTranslation } from "react-i18next";
 import IconComponent from "../../components/common/genericIconComponent";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
@@ -43,6 +44,7 @@ export default function CodeAreaModal({
   setOpen: mySetOpen,
   componentId,
 }: codeAreaModalPropsType): JSX.Element {
+  const { t } = useTranslation();
   const [code, setCode] = useState(value);
   const [open, setOpen] =
     mySetOpen !== undefined && myOpen !== undefined
@@ -255,7 +257,7 @@ export default function CodeAreaModal({
               id="checkAndSaveBtn"
               disabled={readonly}
             >
-              Check & Save
+              {t("basic.CHECK_AND_SAVE")}
             </Button>
           </div>
         </div>
@@ -269,8 +271,8 @@ export default function CodeAreaModal({
           }}
           size="x-small"
           icon="AlertTriangle"
-          confirmationText="Check & Save"
-          cancelText="Discard Changes"
+          confirmationText={t("basic.CHECK_AND_SAVE")}
+          cancelText={t("basic.DISCARD_CHANGES")}
           open={openConfirmation}
           onCancel={() => setOpen(false)}
           onConfirm={() => {

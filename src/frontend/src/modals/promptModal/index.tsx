@@ -1,5 +1,6 @@
 import { usePostValidatePrompt } from "@/controllers/API/queries/nodes/use-post-validate-prompt";
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import IconComponent from "../../components/common/genericIconComponent";
 import SanitizedHTMLWrapper from "../../components/common/sanitizedHTMLWrapper";
 import ShadTooltip from "../../components/common/shadTooltipComponent";
@@ -37,6 +38,7 @@ export default function PromptModal({
   id = "",
   readonly = false,
 }: PromptModalType): JSX.Element {
+  const { t } = useTranslation();
   const [modalOpen, setModalOpen] = useState(false);
   const [inputValue, setInputValue] = useState(value);
   const [isEdit, setIsEdit] = useState(true);
@@ -321,7 +323,7 @@ export default function PromptModal({
             }}
             type="submit"
           >
-            Check & Save
+            {t("basic.CHECK_AND_SAVE")}
           </Button>
         </div>
       </BaseModal.Footer>

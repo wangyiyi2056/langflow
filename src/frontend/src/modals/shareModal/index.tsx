@@ -25,6 +25,7 @@ import BaseModal from "../baseModal";
 import ConfirmationModal from "../confirmationModal";
 import ExportModal from "../exportModal";
 import getTagsIds from "./utils/get-tags-ids";
+import { useTranslation } from "react-i18next";
 
 export default function ShareModal({
   component,
@@ -41,6 +42,7 @@ export default function ShareModal({
   setOpen?: (open: boolean) => void;
   disabled?: boolean;
 }): JSX.Element {
+  const { t } = useTranslation();
   const version = useDarkStore((state) => state.version);
   const hasStore = useStoreStore((state) => state.hasStore);
   const hasApiKey = useStoreStore((state) => state.hasApiKey);
@@ -60,7 +62,6 @@ export default function ShareModal({
   >([]);
   const saveFlow = useSaveFlow();
   const tags = useUtilityStore((state) => state.tags);
-
   const [loadingNames, setLoadingNames] = useState(false);
 
   const name = component?.name ?? "";
@@ -209,11 +210,9 @@ export default function ShareModal({
           {children ? children : <></>}
         </BaseModal.Trigger>
         <BaseModal.Header
-          description={`Publish ${
-            is_component ? "your component" : "workflow"
-          } to the Langflow Store.`}
+          description={`${t("flowPage.PUBLISH")} ${is_component ? t("basic.COMPONENT") : t("basic.WORKFLOW")} ${t("flowPage.TO_THE_STORE")}.`}
         >
-          <span className="pr-2">Share</span>
+          <span className="pr-2">{t("flowPage.more.SHARE")}</span>
           <IconComponent
             name="Share3"
             className="-m-0.5 h-6 w-6 text-foreground"
@@ -248,12 +247,11 @@ export default function ShareModal({
                   htmlFor="public"
                   className="export-modal-save-api text-sm"
                 >
-                  Set {nameComponent} status to public
+                  {t("flowPage.SET")} {is_component ? t("basic.COMPONENT") : t("basic.WORKFLOW")}  {t("flowPage.STATUS_TO_PUBLIC")}
                 </label>
               </div>
               <span className="text-xs text-destructive">
-                <b>Attention:</b> API keys in specified fields are automatically
-                removed upon sharing.
+                <b>{t("flowPage.ATTENTION")}:</b> {t("flowPage.API_KEYS_REMOVED")}
               </span>
             </>
           )}
@@ -261,7 +259,7 @@ export default function ShareModal({
 
         <BaseModal.Footer
           submit={{
-            label: `Share ${is_component ? "Component" : "Flow"}`,
+            label: `${t("flowPage.more.SHARE")}${is_component ? t("basic.COMPONENT") : t("basic.FLOW")}`,
             loading: loadingNames,
             dataTestId: "share-modal-button-flow",
           }}
@@ -278,7 +276,7 @@ export default function ShareModal({
                   }}
                 >
                   <IconComponent name="Download" className="h-4 w-4" />
-                  Export
+                  {t("basic.EXPORT")}
                 </Button>
               </ExportModal>
             )}
@@ -293,7 +291,7 @@ export default function ShareModal({
                 }}
               >
                 <IconComponent name="Download" className="h-4 w-4" />
-                Export
+                {t("basic.EXPORT")}
               </Button>
             )}
           </>

@@ -3,29 +3,32 @@ import { SelectItem } from "@/components/ui/select";
 import { SelectContentWithoutPortal } from "@/components/ui/select-custom";
 import ToolbarSelectItem from "@/pages/FlowPage/components/nodeToolbarComponent/toolbarSelectItem";
 import { NoteDataType } from "@/types/flow";
+import { useTranslation } from "react-i18next";
 
 import { memo } from "react";
 
 export const SelectItems = memo(
-  ({ shortcuts, data }: { shortcuts: any[]; data: NoteDataType }) => (
-    <SelectContentWithoutPortal>
-      <SelectItem value="duplicate">
-        <ToolbarSelectItem
+  ({ shortcuts, data }: { shortcuts: any[]; data: NoteDataType }) => {
+    const { t } = useTranslation();
+    return (
+      <SelectContentWithoutPortal>
+        <SelectItem value="duplicate">
+          <ToolbarSelectItem
           shortcut={
             shortcuts.find((obj) => obj.name === "Duplicate")?.shortcut!
           }
-          value="Duplicate"
+          value={t("flowPage.more.DUPLICATE")}
           icon="Copy"
           dataTestId="copy-button-modal"
         />
       </SelectItem>
       <SelectItem value="copy">
         <ToolbarSelectItem
-          shortcut={shortcuts.find((obj) => obj.name === "Copy")?.shortcut!}
-          value="Copy"
-          icon="Clipboard"
-          dataTestId="copy-button-modal"
-        />
+            shortcut={shortcuts.find((obj) => obj.name === "Copy")?.shortcut!}
+            value={t("flowPage.more.COPY")}
+            icon="Clipboard"
+            dataTestId="copy-button-modal"
+          />
       </SelectItem>
       <SelectItem
         value="documentation"
@@ -33,7 +36,7 @@ export const SelectItems = memo(
       >
         <ToolbarSelectItem
           shortcut={shortcuts.find((obj) => obj.name === "Docs")?.shortcut!}
-          value="Docs"
+          value={t("flowPage.more.DOCS")}
           icon="FileText"
           dataTestId="docs-button-modal"
         />
@@ -44,7 +47,7 @@ export const SelectItems = memo(
             name="Trash2"
             className="relative top-0.5 mr-2 h-4 w-4"
           />
-          <span>Delete</span>
+          <span>{t("flowPage.more.DELETE")}</span>
           <span className="absolute right-2 top-2 flex items-center justify-center rounded-sm px-1 py-[0.2]">
             <ForwardedIconComponent
               name="Delete"
@@ -54,7 +57,7 @@ export const SelectItems = memo(
         </div>
       </SelectItem>
     </SelectContentWithoutPortal>
-  ),
-);
+  );
+});
 
 SelectItems.displayName = "SelectItems";
