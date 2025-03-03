@@ -44,6 +44,11 @@ const useColumnDefs = (
         headerName: t("flowPage.dialog.VALUE"),
         field: "value",
         cellRenderer: TableNodeCellRender,
+        cellStyle: {
+          display: "flex",
+          "justify-content": "flex-start",
+          "align-items": "flex-start",
+        },
         valueGetter: (params: ValueGetterParams) => {
           return {
             nodeId: nodeId,
