@@ -1,6 +1,7 @@
 import ForwardedIconComponent from "../../../../../../components/common/genericIconComponent";
 import { Button } from "../../../../../../components/ui/button";
 import SecretKeyModal from "../../../../../../modals/secretKeyModal";
+import { getModalPropsApiKey } from "../../helpers/get-modal-props";
 import { useTranslation } from "react-i18next";
 
 type ApiKeyHeaderComponentProps = {
@@ -13,6 +14,7 @@ const ApiKeyHeaderComponent = ({
   fetchApiKeys,
   userId,
 }: ApiKeyHeaderComponentProps) => {
+  const modalProps = getModalPropsApiKey();
   const { t } = useTranslation();
   return (
     <>
@@ -28,7 +30,11 @@ const ApiKeyHeaderComponent = ({
           <p className="text-sm text-muted-foreground">{t("constants.API_PAGE_PARAGRAPH")}</p>
         </div>
         <div className="flex flex-shrink-0 items-center gap-2">
-          <SecretKeyModal data={userId} onCloseModal={fetchApiKeys}>
+          <SecretKeyModal
+            modalProps={modalProps}
+            data={userId}
+            onCloseModal={fetchApiKeys}
+          >
             <Button data-testid="api-key-button-store" variant="primary">
               <ForwardedIconComponent name="Plus" className="w-4" />
               {t("settingsPage.ADD_NEW")}

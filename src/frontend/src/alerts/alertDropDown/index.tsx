@@ -25,7 +25,13 @@ const AlertDropdown = forwardRef<HTMLDivElement, AlertDropdownType>(
     );
 
     const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
+    useEffect(() => {
+      if (!open) {
+        onClose?.();
+      }
+    }, [open]);
     useEffect(() => {
       if (!open) {
         onClose?.();

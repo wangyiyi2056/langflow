@@ -19,6 +19,7 @@ export default function ComponentTextModal({
   readonly = false,
   password,
   changeVisibility,
+  onCloseModal,
 }: textModalPropsType): JSX.Element {
   const { t } = useTranslation();
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,6 +29,12 @@ export default function ComponentTextModal({
   useEffect(() => {
     if (typeof value === "string") setInputValue(value);
   }, [value, modalOpen]);
+
+  useEffect(() => {
+    if (!modalOpen) {
+      onCloseModal?.();
+    }
+  }, [modalOpen]);
 
   return (
     <BaseModal

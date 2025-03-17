@@ -1,4 +1,6 @@
 import { useLogout } from "@/controllers/API/queries/auth";
+import CustomFeatureFlagDialog from "@/customization/components/custom-feature-flag-dialog";
+import CustomFeatureFlagMenuItems from "@/customization/components/custom-feature-flag-menu-items";
 import { CustomFeedbackDialog } from "@/customization/components/custom-feedback-dialog";
 import { CustomHeaderMenuItemsTitle } from "@/customization/components/custom-header-menu-items-title";
 import { CustomProfileIcon } from "@/customization/components/custom-profile-icon";
@@ -21,6 +23,8 @@ import ThemeButtons from "../ThemeButtons";
 import { useTranslation } from "react-i18next";
 export const AccountMenu = () => {
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const [isCustomFeatureFlagsOpen, setIsCustomFeatureFlagsOpen] =
+    useState(false);
   const { customParam: id } = useParams();
   const version = useDarkStore((state) => state.version);
   const navigate = useCustomNavigate();
@@ -150,6 +154,10 @@ export const AccountMenu = () => {
       <CustomFeedbackDialog
         isOpen={isFeedbackOpen}
         setIsOpen={setIsFeedbackOpen}
+      />
+      <CustomFeatureFlagDialog
+        isOpen={isCustomFeatureFlagsOpen}
+        setIsOpen={setIsCustomFeatureFlagsOpen}
       />
     </>
   );

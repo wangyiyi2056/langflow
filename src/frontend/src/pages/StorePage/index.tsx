@@ -40,7 +40,7 @@ import useFlowsManagerStore from "../../stores/flowsManagerStore";
 import { useStoreStore } from "../../stores/storeStore";
 import { storeComponent } from "../../types/store";
 import { cn } from "../../utils/utils";
-import InputSearchComponent from "../MainPage/oldComponents/myCollectionComponent/components/inputSearchComponent";
+import InputSearchComponent from "../MainPage/components/inputSearchComponent";
 import { useTranslation } from "react-i18next";
 import { toUpperSnakeCase } from "@/utils/utils";
 
