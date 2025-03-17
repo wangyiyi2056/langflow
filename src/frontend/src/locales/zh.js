@@ -67,6 +67,15 @@ export default {
       YEARS: "年",
       AGO: "前",
     },
+    page: {
+      ROWS_PER_PAGE: "每页行数",
+      GO_TO_FIRST_PAGE: "首页",
+      PAGE_START: "第",
+      PAGE_END: "页",
+      GO_TO_PREVIOUS_PAGE: "上一页",
+      GO_TO_NEXT_PAGE: "下一页",
+      GO_TO_LAST_PAGE: "尾页",
+    },
     NO_COMPONENTS: "没有保存或自定义组件。",
     templates: {
       SEARCH: "搜索...",

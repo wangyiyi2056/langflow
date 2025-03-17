@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../ui/select";
+import { useTranslation } from "react-i18next";
 
 export default function PaginatorComponent({
   pageSize = PAGINATION_SIZE,
@@ -24,6 +25,7 @@ export default function PaginatorComponent({
   pages,
   isComponent,
 }: PaginatorComponentType) {
+  const { t } = useTranslation();
   const [size, setPageSize] = useState(pageSize);
   const [maxIndex, setMaxPageIndex] = useState(
     Math.ceil(totalRowsCount / pageSize),
@@ -89,7 +91,7 @@ export default function PaginatorComponent({
             variant="ghost"
             size={"iconMd"}
           >
-            <span className="sr-only">Go to previous page</span>
+            <span className="sr-only">{t("flowPage.page.GO_TO_PREVIOUS_PAGE")}</span>
             <IconComponent name="ChevronLeft" className="h-4 w-4" />
           </Button>
           <Button
@@ -100,7 +102,7 @@ export default function PaginatorComponent({
             variant="ghost"
             size={"iconMd"}
           >
-            <span className="sr-only">Go to next page</span>
+            <span className="sr-only">{t("flowPage.page.GO_TO_NEXT_PAGE")}</span>
             <IconComponent name="ChevronRight" className="h-4 w-4" />
           </Button>
         </div>

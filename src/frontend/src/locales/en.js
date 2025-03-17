@@ -70,6 +70,15 @@ export default {
       YEARS: "years",
       AGO: "ago",
     },
+    page: {
+      ROWS_PER_PAGE: "Rows per page",
+      GO_TO_FIRST_PAGE: "Go to first page",
+      PAGE_START: "Page",
+      PAGE_END: "of",
+      GO_TO_PREVIOUS_PAGE: "Go to previous page",
+      GO_TO_NEXT_PAGE: "Go to next page",
+      GO_TO_LAST_PAGE: "Go to last page",
+    },
     NEW_FLOW_MODAL: {
       GET_STARTED: "Get Started",
       TIP: "Select a template below",
