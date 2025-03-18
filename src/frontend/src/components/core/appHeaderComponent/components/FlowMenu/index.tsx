@@ -30,7 +30,8 @@ import useAlertStore from "@/stores/alertStore";
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
 import { useShortcutsStore } from "@/stores/shortcuts";
-import { cn } from "@/utils/utils";
+import { swatchColors } from "@/utils/styleUtils";
+import { cn, getNumberFromString } from "@/utils/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 export const MenuBar = ({}: {}): JSX.Element => {
@@ -229,6 +230,12 @@ export const MenuBar = ({}: {}): JSX.Element => {
     }
   }, [flowName]);
 
+  const swatchIndex =
+    (currentFlow?.gradient && !isNaN(parseInt(currentFlow?.gradient))
+      ? parseInt(currentFlow?.gradient)
+      : getNumberFromString(currentFlow?.gradient ?? currentFlow?.id ?? "")) %
+    swatchColors.length;
+
   return currentFlow && onFlowPage ? (
     <div
       className="flex w-full items-center justify-center gap-2"
@@ -261,6 +268,12 @@ export const MenuBar = ({}: {}): JSX.Element => {
         data-testid="menu_bar_separator"
       >
         /
+      </div>
+      <div className={cn(`flex rounded p-1`, swatchColors[swatchIndex])}>
+        <IconComponent
+          name={currentFlow?.icon ?? "Workflow"}
+          className="h-3.5 w-3.5"
+        />
       </div>
 
       <div
