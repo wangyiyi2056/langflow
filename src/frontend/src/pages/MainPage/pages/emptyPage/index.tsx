@@ -36,6 +36,7 @@ export const EmptyPage = ({ setOpenModal }: EmptyPageProps) => {
               variant="default"
               onClick={() => setOpenModal(true)}
               id="new-project-btn"
+              data-testid="new_project_btn_empty_page"
             >
               <ForwardedIconComponent
                 name="Plus"

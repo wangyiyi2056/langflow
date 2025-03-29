@@ -79,6 +79,7 @@ module.exports = {
         "Configuration/configuration-auto-saving",
         "Configuration/configuration-backend-only",
         "Configuration/configuration-cli",
+        "Configuration/configuration-custom-database",
         "Configuration/configuration-global-variables",
         "Configuration/environment-variables",
         "Configuration/configuration-security-best-practices"
@@ -89,9 +90,19 @@ module.exports = {
       label: "Deployment",
       items: [
         {
+          type:"doc",
+          id: "Deployment/deployment-overview",
+          label: "Deployment overview"
+        },
+        {
           type: "doc",
           id: "Deployment/deployment-docker",
           label: "Docker"
+        },
+        {
+          type: "doc",
+          id: "Deployment/deployment-kubernetes",
+          label: "Kubernetes"
         },
         {
           type: "doc",
@@ -102,11 +113,6 @@ module.exports = {
           type: "doc",
           id: "Deployment/deployment-hugging-face-spaces",
           label: "Hugging Face Spaces"
-        },
-        {
-          type: "doc",
-          id: "Deployment/deployment-kubernetes",
-          label: "Kubernetes"
         },
         {
           type: "doc",
@@ -147,6 +153,7 @@ module.exports = {
         "Integrations/integrations-langfuse",
         "Integrations/integrations-langsmith",
         "Integrations/integrations-langwatch",
+        "Integrations/integrations-opik",
         {
           type: "doc",
           id: "Integrations/integrations-mcp",
@@ -174,6 +181,7 @@ module.exports = {
           label: "NVIDIA",
           items: [
             "Integrations/Nvidia/integrations-nvidia-ingest",
+            "Integrations/Nvidia/integrations-nvidia-nim-wsl2",
           ],
         },
       ],
@@ -212,6 +220,19 @@ module.exports = {
           label: "Luna for Langflow",
         },
       ],
+    },
+    {
+      type: "html",
+      className: "sidebar-ad",
+      value: `
+        <a href="https://astra.datastax.com/signup?type=langflow" target="_blank" class="menu__link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+          <div class="sidebar-ad-text-container">
+            <span class="sidebar-ad-text">Use Langflow in the cloud</span>
+            <span class="sidebar-ad-text sidebar-ad-text-gradient">Sign up for DataStax Langflow</span>
+          </div>
+        </a>
+      `,
     },
   ],
 };
