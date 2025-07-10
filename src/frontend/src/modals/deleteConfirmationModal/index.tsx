@@ -9,7 +9,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../components/ui/dialog";
-import { useTranslation } from "react-i18next";
 
 export default function DeleteConfirmationModal({
   children,
@@ -28,7 +27,6 @@ export default function DeleteConfirmationModal({
   setOpen?: (open: boolean) => void;
   note?: string;
 }) {
-  const { t } = useTranslation();
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild={!children ? true : asChild} tabIndex={-1}>
@@ -58,7 +56,7 @@ export default function DeleteConfirmationModal({
               variant="outline"
               data-testid="btn_cancel_delete_confirmation_modal"
             >
-              {t("basic.CANCEL")}
+              Cancel
             </Button>
           </DialogClose>
           <DialogClose asChild>
@@ -70,7 +68,7 @@ export default function DeleteConfirmationModal({
               }}
               data-testid="btn_delete_delete_confirmation_modal"
             >
-              {t("basic.DELETE")}
+              Delete
             </Button>
           </DialogClose>
         </DialogFooter>

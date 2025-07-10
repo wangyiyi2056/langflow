@@ -51,6 +51,7 @@ const SidebarItemsList = ({
                 idx={idx}
                 onDragStart={onDragStart}
                 nodeColors={nodeColors}
+                key={SBItemName} // 这里加 key，推荐用 SBItemName 或更唯一的
               />
             );
           }
@@ -97,6 +98,7 @@ const UniqueInputsDraggableComponent = ({
   onDragStart,
   nodeColors,
 }) => {
+  const { t } = useTranslation();
   const nodes = useFlowStore((state) => state.nodes);
   const chatInputAdded = useMemo(() => checkChatInput(nodes), [nodes]);
   const webhookInputAdded = useMemo(() => checkWebhookInput(nodes), [nodes]);
@@ -106,7 +108,6 @@ const UniqueInputsDraggableComponent = ({
       webhookInput: webhookInputAdded,
     };
   }, [chatInputAdded, webhookInputAdded]);
-
   return (
     <ShadTooltip content={currentItem.display_name} side="right" key={idx}>
       <SidebarDraggableComponent
@@ -122,7 +123,7 @@ const UniqueInputsDraggableComponent = ({
         color={nodeColors[item.name]}
         itemName={SBItemName}
         error={!!currentItem.error}
-        display_name={currentItem.display_name}
+        display_name={t(`flowPage.categories.draggableItem.${toUpperSnakeCase(currentItem.display_name)}`,{ defaultValue: currentItem.display_name })}
         official={currentItem.official === false ? false : true}
         beta={currentItem.beta ?? false}
         legacy={currentItem.legacy ?? false}

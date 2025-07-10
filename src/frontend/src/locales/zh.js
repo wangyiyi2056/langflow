@@ -354,6 +354,7 @@ export default {
       SAVED: "已保存",
       INPUTS: "输入",
       OUTPUTS: "输出",
+      INPUT_OUTPUT: "输入/输出",
       PROMPTS: "提示",
       PROMPT: "提示",
       DATA: "数据",
@@ -380,7 +381,6 @@ export default {
       HELPERS: "助手",
       TYPE: "类型",
       draggableItem: {
-        // Inputs
         CHAT_INPUT: "对话输入",
         CHAT_OUTPUT: "对话输出",
         //Outputs
@@ -388,6 +388,7 @@ export default {
         TEXT_OUTPUT: "文本输出",
         // Prompts
         PROMPT: "提示",
+        PROMPT_TEMPLATE: "提示模板",
         // Data
         API_REQUEST: "API请求",
         DIRECTORY: "目录",
@@ -425,6 +426,7 @@ export default {
         // Helpers
         BATCH_RUN: "批量运行",
         CURRENT_DATE: "当前日期",
+        CALCULATOR: "计算器",
         ID_GENERATOR: "ID生成器",
         MESSAGE_HISTORY: "消息历史",
         MESSAGE_STORE: "消息存储",

@@ -48,7 +48,6 @@ import { HeaderButtons } from "./components/header-buttons";
 import { InputEditFolderName } from "./components/input-edit-folder-name";
 import { MCPServerNotice } from "./components/mcp-server-notice";
 import { SelectOptions } from "./components/select-options";
-import { useTranslation } from "react-i18next";
 
 type SideBarFoldersButtonsComponentProps = {
   handleChangeFolder?: (id: string) => void;
@@ -60,7 +59,6 @@ const SideBarFoldersButtonsComponent = ({
   handleDeleteFolder,
   handleFilesClick,
 }: SideBarFoldersButtonsComponentProps) => {
-  const { t } = useTranslation();
   const location = useLocation();
   const pathname = location.pathname;
   const folders = useFolderStore((state) => state.folders);
@@ -374,7 +372,7 @@ const SideBarFoldersButtonsComponent = ({
           <SidebarGroupContent>
             <SidebarMenu>
               {!loading ? (
-                processedFolders.map((item, index) => {
+                folders.map((item, index) => {
                   const editFolderName = editFolders?.filter(
                     (folder) => folder.name === item.name,
                   )[0];

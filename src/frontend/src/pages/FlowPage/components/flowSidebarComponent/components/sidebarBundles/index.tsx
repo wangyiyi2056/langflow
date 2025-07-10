@@ -22,6 +22,7 @@ export const MemoizedSidebarGroup = memo(
     openCategories,
     setOpenCategories,
   }: SidebarGroupProps) => {
+    const { t } = useTranslation();
     const sortedBundles = useMemo(() => {
       return BUNDLES.toSorted((a, b) => {
         const referenceArray = search !== "" ? sortedCategories : BUNDLES;

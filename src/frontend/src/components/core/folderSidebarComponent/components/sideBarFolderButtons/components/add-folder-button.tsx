@@ -1,7 +1,6 @@
 import IconComponent from "@/components/common/genericIconComponent";
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "react-i18next";
 
 export const AddFolderButton = ({
   onClick,
@@ -26,4 +25,3 @@ export const AddFolderButton = ({
       </Button>
     </ShadTooltip>
   );
-};

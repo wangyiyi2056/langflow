@@ -11,7 +11,7 @@ import useAlertStore from "@/stores/alertStore";
 import { cn } from "@/utils/utils";
 import { debounce } from "lodash";
 import { useCallback, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+
 interface HeaderComponentProps {
   flowType: "flows" | "components" | "mcp";
   setFlowType: (flowType: "flows" | "components" | "mcp") => void;
@@ -108,7 +108,7 @@ const HeaderComponent = ({
             </SidebarTrigger>
           </div>
         </div>
-        {folderName === "My Projects" ? t("folderSidebar.MY_PROJECTS") : folderName}
+        {folderName}
       </div>
       {!isEmptyFolder && (
         <>
@@ -209,6 +209,7 @@ const HeaderComponent = ({
                       (selectedFlows.length > 1 ? "their" : "its") +
                       " message history"
                     }
+                    asChild
                   >
                     <Button
                       variant="destructive"

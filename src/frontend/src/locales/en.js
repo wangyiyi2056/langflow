@@ -367,6 +367,7 @@ export default {
       SAVED: "Saved",
       INPUTS: "Input",
       OUTPUTS: "Output",
+      INPUT_OUTPUT: "Input/Output",
       PROMPTS: "Prompts",
       PROMPT: "Prompt",
       DATA: "Data",
@@ -393,14 +394,14 @@ export default {
       HELPERS: "Helpers",
       TYPE: "Type",
       draggableItem: {
-        // Inputs
-        CHAT_INPUT: "Chat Input",
+        CHAT_INPUT: "Chat Input123",
         CHAT_OUTPUT: "Chat Output",
         //Outputs
         TEXT_INPUT: "Text Input",
         TEXT_OUTPUT: "Text Output",
         // Prompts
         PROMPT: "Prompt",
+        PROMPT_TEMPLATE: "Prompt Template",
         // Data
         API_REQUEST: "API Request",
         DIRECTORY: "Directory",
@@ -438,6 +439,7 @@ export default {
         // Helpers
         BATCH_RUN: "Batch Run",
         CURRENT_DATE: "Current Date",
+        CALCULATOR: "Calculator",
         ID_GENERATOR: "ID Generator",
         MESSAGE_HISTORY: "Message History",
         MESSAGE_STORE: "Message Store",
