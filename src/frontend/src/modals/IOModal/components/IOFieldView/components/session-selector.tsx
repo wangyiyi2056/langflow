@@ -11,6 +11,7 @@ import { useUpdateSessionName } from "@/controllers/API/queries/messages/use-ren
 import useFlowsManagerStore from "@/stores/flowsManagerStore";
 import useFlowStore from "@/stores/flowStore";
 import { useUtilityStore } from "@/stores/utilityStore";
+import { useVoiceStore } from "@/stores/voiceStore";
 import { cn } from "@/utils/utils";
 import React, { useEffect, useRef, useState } from "react";
 import { v5 as uuidv5 } from "uuid";
@@ -26,6 +27,7 @@ export default function SessionSelector({
   selectedView,
   setSelectedView,
   playgroundPage,
+  setActiveSession,
 }: {
   deleteSession: (session: string) => void;
   session: string;
@@ -36,6 +38,7 @@ export default function SessionSelector({
   selectedView?: { type: string; id: string };
   setSelectedView: (view: { type: string; id: string } | undefined) => void;
   playgroundPage: boolean;
+  setActiveSession: (session: string) => void;
 }) {
   const { t } = useTranslation();
   const clientId = useUtilityStore((state) => state.clientId);
@@ -47,6 +50,9 @@ export default function SessionSelector({
   const [editedSession, setEditedSession] = useState(session);
   const { mutate: updateSessionName } = useUpdateSessionName();
   const inputRef = useRef<HTMLInputElement>(null);
+  const setNewChatOnPlayground = useFlowStore(
+    (state) => state.setNewChatOnPlayground,
+  );
 
   useEffect(() => {
     setEditedSession(session);
@@ -69,13 +75,13 @@ export default function SessionSelector({
         {
           onSuccess: () => {
             if (isVisible) {
-              updateVisibleSession(editedSession);
+              updateVisibleSession(editedSession.trim());
             }
             if (
               selectedView?.type === "Session" &&
               selectedView?.id === session
             ) {
-              setSelectedView({ type: "Session", id: editedSession });
+              setSelectedView({ type: "Session", id: editedSession.trim() });
             }
           },
         },
@@ -119,15 +125,20 @@ export default function SessionSelector({
     }
   };
 
+  const setNewSessionCloseVoiceAssistant = useVoiceStore(
+    (state) => state.setNewSessionCloseVoiceAssistant,
+  );
+
   return (
     <div
       data-testid="session-selector"
       onClick={(e) => {
+        setNewSessionCloseVoiceAssistant(true);
         if (isEditing) e.stopPropagation();
         else toggleVisibility();
       }}
       className={cn(
-        "file-component-accordion-div group cursor-pointer rounded-md text-left text-[13px] hover:bg-secondary-hover",
+        "file-component-accordion-div group cursor-pointer rounded-md text-left text-mmd hover:bg-secondary-hover",
         isVisible ? "bg-secondary-hover font-semibold" : "font-normal",
       )}
     >
@@ -160,17 +171,24 @@ export default function SessionSelector({
             </div>
           ) : (
             <ShadTooltip styleClasses="z-50" content={session}>
-              <div
-                className={cn(
-                  "w-full whitespace-nowrap group-hover:truncate-secondary-hover",
-                  isVisible
-                    ? "truncate-secondary-hover"
-                    : "truncate-muted dark:truncate-canvas",
-                )}
-              >
-                {session === currentFlowId
-                  ? t("flowPage.DEFAULT_SESSION")
-                  : session}
+              <div className="relative w-full overflow-hidden">
+                <span className="w-full truncate">
+                  {session === currentFlowId ? "Default Session" : session}
+                </span>
+                <div
+                  className={cn(
+                    "pointer-events-none absolute left-0 right-0 top-0 h-full whitespace-nowrap",
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "h-full w-full group-hover:truncate-secondary-hover",
+                      isVisible
+                        ? "truncate-secondary-hover"
+                        : "truncate-muted dark:truncate-canvas",
+                    )}
+                  ></div>
+                </div>
               </div>
             </ShadTooltip>
           )}

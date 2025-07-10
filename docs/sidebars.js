@@ -11,23 +11,17 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Starter projects",
+      label: "Templates",
       items: [
-        'Starter-Projects/starter-projects-basic-prompting',
-        'Starter-Projects/starter-projects-vector-store-rag',
-        'Starter-Projects/starter-projects-simple-agent',
-      ],
-    },
-    {
-      type: "category",
-      label: "Tutorials",
-      items: [
-        'Tutorials/tutorials-blog-writer',
-        'Tutorials/tutorials-document-qa',
-        'Tutorials/tutorials-memory-chatbot',
-        'Tutorials/tutorials-math-agent',
-        'Tutorials/tutorials-sequential-agent',
-        'Tutorials/tutorials-travel-planning-agent',
+        'Templates/basic-prompting',
+        'Templates/simple-agent',
+        'Templates/blog-writer',
+        'Templates/document-qa',
+        'Templates/memory-chatbot',
+        'Templates/vector-store-rag',
+        'Templates/financial-report-parser',
+        'Templates/sequential-agent',
+        'Templates/travel-planning-agent',
       ],
     },
     {
@@ -36,23 +30,26 @@ module.exports = {
       items: [
         "Concepts/concepts-overview",
         "Concepts/concepts-playground",
-        "Concepts/concepts-components",
         "Concepts/concepts-flows",
         "Concepts/concepts-objects",
-        "Concepts/concepts-api",
+        "Concepts/concepts-publish",
+        "Concepts/embedded-chat-widget",
+        "Concepts/concepts-file-management",
+        "Concepts/concepts-voice-mode",
       ],
     },
     {
       type: "category",
       label: "Components",
       items: [
+        "Concepts/concepts-components",
         "Components/components-agents",
+        "Components/components-bundles",
         "Components/components-custom-components",
         "Components/components-data",
         "Components/components-embedding-models",
         "Components/components-helpers",
         "Components/components-io",
-        "Components/components-loaders",
         "Components/components-logic",
         "Components/components-memories",
         "Components/components-models",
@@ -66,8 +63,16 @@ module.exports = {
       type: "category",
       label: "Agents",
       items: [
-        "Agents/agents-overview",
-        "Agents/agent-tool-calling-agent-component",
+        "Agents/agents",
+        "Agents/agents-tools",
+      ],
+    },
+    {
+      type: "category",
+      label: "Model Context Protocol (MCP)",
+      items: [
+        "Concepts/mcp-server",
+        "Components/mcp-client",
       ],
     },
     {
@@ -76,13 +81,63 @@ module.exports = {
       items: [
         "Configuration/configuration-api-keys",
         "Configuration/configuration-authentication",
-        "Configuration/configuration-auto-saving",
-        "Configuration/configuration-backend-only",
         "Configuration/configuration-cli",
         "Configuration/configuration-custom-database",
         "Configuration/configuration-global-variables",
         "Configuration/environment-variables",
-        "Configuration/configuration-security-best-practices"
+        "Contributing/contributing-telemetry",
+      ],
+    },
+    {
+      type: "category",
+      label: "Develop",
+      items: [
+        {
+          type: "doc",
+          id: "Develop/develop-overview",
+          label: "Overview"
+        },
+        {
+          type: "doc",
+          id: "Develop/develop-application",
+          label: "Develop an application in Langflow"
+        },
+        {
+          type: "doc",
+          id: "Develop/install-custom-dependencies",
+          label: "Install custom dependencies"
+        },
+        {
+          type: "doc",
+          id: "Develop/memory",
+          label: "Memory management"
+        },
+        {
+          type: "doc",
+          id: "Develop/session-id",
+          label: "Session ID"
+        },
+        {
+          type: "doc",
+          id: "Develop/logging",
+          label: "Logging"
+        },
+        {
+          type: "doc",
+          id: "Develop/webhook",
+          label: "Webhook"
+        },
+        {
+          type: "category",
+          label: "Clients",
+          items: [
+            {
+              type: "doc",
+              id: "Develop/Clients/typescript-client",
+              label: "TypeScript Client"
+            }
+          ]
+        },
       ],
     },
     {
@@ -101,8 +156,34 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "Deployment/deployment-kubernetes",
-          label: "Kubernetes"
+          id: "Deployment/deployment-public-server",
+          label: "Deploy a public Langflow server"
+        },
+        {
+          type: "doc",
+          id: "Deployment/deployment-caddyfile",
+          label: "Deploy Langflow on a remote server"
+        },
+        {
+          type: "category",
+          label: "Kubernetes",
+          items: [
+            {
+              type: "doc",
+              id: "Deployment/deployment-prod-best-practices",
+              label: "Langflow architecture and best practices"
+            },
+            {
+              type: "doc",
+              id: "Deployment/deployment-kubernetes-dev",
+              label: "Deploy in development"
+            },
+            {
+              type: "doc",
+              id: "Deployment/deployment-kubernetes-prod",
+              label: "Deploy in production"
+            }
+          ]
         },
         {
           type: "doc",
@@ -123,7 +204,7 @@ module.exports = {
           type: "doc",
           id: "Deployment/deployment-render",
           label: "Render"
-        }
+        },
       ],
     },
     {
@@ -131,14 +212,54 @@ module.exports = {
       label: "API reference",
       items: [
         {
-          type: "link",
-          label: "API documentation",
-          href: "/api",
+          type: "doc",
+          id: "API-Reference/api-reference-api-examples",
+          label: "Get started with the Langflow API",
         },
         {
           type: "doc",
-          id: "API-Reference/api-reference-api-examples",
-          label: "API examples",
+          id: "API-Reference/api-flows-run",
+          label: "Flow trigger endpoints",
+        },
+        {
+          type: "doc",
+          id: "API-Reference/api-flows",
+          label: "Flow management endpoints",
+        },
+        {
+          type: "doc",
+          id: "API-Reference/api-files",
+          label: "Files endpoints",
+        },
+        {
+          type: "doc",
+          id: "API-Reference/api-projects",
+          label: "Projects endpoints",
+        },
+        {
+          type: "doc",
+          id: "API-Reference/api-logs",
+          label: "Logs endpoints",
+        },
+        {
+          type: "doc",
+          id: "API-Reference/api-monitor",
+          label: "Monitor endpoints",
+        },
+        {
+          type: "doc",
+          id: "API-Reference/api-build",
+          label: "Build endpoints",
+        },
+        {
+          type: "doc",
+          id: "API-Reference/api-users",
+          label: "Users endpoints",
+        },
+        {
+          type: "link",
+          label: "Langflow API specification",
+          href: "/api",
         },
       ],
     },
@@ -147,17 +268,30 @@ module.exports = {
       label: "Integrations",
       items: [
         "Integrations/Apify/integrations-apify",
-        "Integrations/Arize/integrations-arize",
-        "Integrations/integrations-assemblyai",
-        "Integrations/Composio/integrations-composio",
-        "Integrations/integrations-langfuse",
-        "Integrations/integrations-langsmith",
-        "Integrations/integrations-langwatch",
-        "Integrations/integrations-opik",
         {
           type: "doc",
-          id: "Integrations/integrations-mcp",
-          label: "MCP (Model context protocol)"
+          id: "Integrations/Arize/integrations-arize",
+          label: "Arize",
+        },
+        {
+          type: "doc",
+          id: "Integrations/integrations-assemblyai",
+          label: "AssemblyAI",
+        },
+        {
+          type: "doc",
+          id: "Integrations/mcp-component-astra",
+          label: "Astra DB MCP server",
+        },
+        {
+          type: "doc",
+          id: "Integrations/Cleanlab/integrations-cleanlab",
+          label: "Cleanlab",
+        },
+        {
+          type: "doc",
+          id: "Integrations/Composio/integrations-composio",
+          label: "Composio",
         },
         {
           type: 'category',
@@ -165,8 +299,13 @@ module.exports = {
           items: [
             'Integrations/Google/integrations-setup-google-oauth-langflow',
             'Integrations/Google/integrations-setup-google-cloud-vertex-ai-langflow',
+            'Integrations/Google/integrations-google-big-query',
           ],
         },
+        "Integrations/integrations-langfuse",
+        "Integrations/integrations-langsmith",
+        "Integrations/integrations-langwatch",
+        "Integrations/integrations-opik",
         {
           type: "category",
           label: "Notion",
@@ -180,23 +319,35 @@ module.exports = {
           type: "category",
           label: "NVIDIA",
           items: [
-            "Integrations/Nvidia/integrations-nvidia-ingest",
-            "Integrations/Nvidia/integrations-nvidia-nim-wsl2",
+            {
+              type: "doc",
+              id: "Integrations/Nvidia/integrations-nvidia-ingest",
+              label: "NVIDIA Ingest"
+            },
+            {
+              type: "doc",
+              id: "Integrations/Nvidia/integrations-nvidia-nim-wsl2",
+              label: "NVIDIA NIM on WSL2"
+            },
+            {
+              type: "doc",
+              id: "Integrations/Nvidia/integrations-nvidia-g-assist",
+              label: "NVIDIA G-Assist"
+            },
           ],
         },
       ],
     },
     {
       type: "category",
-      label: "Contributing",
+      label: "Contribute",
       items: [
         "Contributing/contributing-community",
+        "Contributing/contributing-how-to-contribute",
         "Contributing/contributing-components",
         "Contributing/contributing-component-tests",
-        "Contributing/contributing-github-discussion-board",
-        "Contributing/contributing-github-issues",
-        "Contributing/contributing-how-to-contribute",
-        "Contributing/contributing-telemetry",
+        "Contributing/contributing-templates",
+        "Contributing/contributing-bundles",
       ],
     },
     {
@@ -216,8 +367,18 @@ module.exports = {
       items: [
         {
           type: "doc",
+          id: "Support/troubleshooting",
+          label: "Troubleshoot",
+        },
+        {
+          type: "doc",
+          id: "Contributing/contributing-github-issues",
+          label: "Get help and request enhancements",
+        },
+        {
+          type: "doc",
           id: "Support/luna-for-langflow",
-          label: "Luna for Langflow",
+          label: "Enterprise support",
         },
       ],
     },

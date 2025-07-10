@@ -11,16 +11,14 @@ export const AddFolderButton = ({
   onClick: () => void;
   disabled: boolean;
   loading: boolean;
-}) => {
-  const { t } = useTranslation();
-  return (
-    <ShadTooltip content={t("folderSidebar.CREATE_NEW_FOLDER")} styleClasses="z-50">
-      <Button
-        variant="ghost"
+}) => (
+  <ShadTooltip content="Create new project" styleClasses="z-50">
+    <Button
+      variant="ghost"
       size="icon"
       className="h-7 w-7 border-0 text-zinc-500 hover:bg-zinc-200 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-white"
       onClick={onClick}
-      data-testid="add-folder-button"
+      data-testid="add-project-button"
       disabled={disabled}
       loading={loading}
     >

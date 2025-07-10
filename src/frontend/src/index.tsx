@@ -9,7 +9,8 @@ import "./App.css";
 import "./style/applies.css";
 
 // @ts-ignore
-import App from "./App";
+
+import App from "./customization/custom-App";
 import "./locales/i18n";
 
 const root = ReactDOM.createRoot(

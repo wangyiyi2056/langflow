@@ -29,8 +29,11 @@ export const EmptyPage = ({ setOpenModal }: EmptyPageProps) => {
             >
               {folders?.length > 1 ? t("mainPage.EMPTY_FOLDER") : t("mainPage.START_BUILDING")}
             </h3>
-            <p className="pb-5 text-sm text-secondary-foreground">
-              {t("mainPage.START_BEGIN_DESC")}
+            <p
+              data-testid="empty-project-description"
+              className="pb-5 text-sm text-secondary-foreground"
+            >
+             {t("mainPage.START_BEGIN_DESC")}
             </p>
             <Button
               variant="default"

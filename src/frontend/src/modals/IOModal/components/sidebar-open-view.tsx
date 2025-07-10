@@ -1,5 +1,7 @@
 import ShadTooltip from "@/components/common/shadTooltipComponent";
 import { Button } from "@/components/ui/button";
+import useFlowStore from "@/stores/flowStore";
+import { useVoiceStore } from "@/stores/voiceStore";
 import IconComponent from "../../../components/common/genericIconComponent";
 import { SidebarOpenViewProps } from "../types/sidebar-open-view";
 import SessionSelector from "./IOFieldView/components/session-selector";
@@ -12,8 +14,17 @@ export const SidebarOpenView = ({
   visibleSession,
   selectedViewField,
   playgroundPage,
+  setActiveSession,
 }: SidebarOpenViewProps) => {
   const { t } = useTranslation();
+  const setNewSessionCloseVoiceAssistant = useVoiceStore(
+    (state) => state.setNewSessionCloseVoiceAssistant,
+  );
+
+  const setNewChatOnPlayground = useFlowStore(
+    (state) => state.setNewChatOnPlayground,
+  );
+
   return (
     <>
       <div className="flex flex-col pl-3">
@@ -24,7 +35,7 @@ export const SidebarOpenView = ({
                 name="MessagesSquare"
                 className="h-[18px] w-[18px] text-ring"
               />
-              <div className="text-[13px] font-normal">{t("flowPage.CHAT")}</div>
+              <div className="text-mmd font-normal">{t("flowPage.CHAT")}</div>
             </div>
             <ShadTooltip styleClasses="z-50" content={t("flowPage.NEW_CHAT")}>
               <div>
@@ -35,6 +46,8 @@ export const SidebarOpenView = ({
                   onClick={(_) => {
                     setvisibleSession(undefined);
                     setSelectedViewField(undefined);
+                    setNewSessionCloseVoiceAssistant(true);
+                    setNewChatOnPlayground(true);
                   }}
                 >
                   <IconComponent
@@ -72,6 +85,9 @@ export const SidebarOpenView = ({
                   id: session,
                   type: "Session",
                 });
+              }}
+              setActiveSession={(session) => {
+                setActiveSession(session);
               }}
             />
           ))}

@@ -20,7 +20,7 @@ export default function DeleteConfirmationModal({
   setOpen,
   note = "",
 }: {
-  children: JSX.Element;
+  children?: JSX.Element;
   onConfirm: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   description?: string;
   asChild?: boolean;
@@ -31,31 +31,24 @@ export default function DeleteConfirmationModal({
   const { t } = useTranslation();
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild={asChild} tabIndex={-1}>
-        {children}
+      <DialogTrigger asChild={!children ? true : asChild} tabIndex={-1}>
+        {children ?? <></>}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
             <div className="flex items-center">
-              <span className="pr-2">{t("basic.DELETE")}</span>
               <Trash2
-                className="h-6 w-6 pl-1 text-foreground"
+                className="h-6 w-6 pr-1 text-foreground"
                 strokeWidth={1.5}
               />
+              <span className="pl-2">Delete</span>
             </div>
           </DialogTitle>
         </DialogHeader>
-        <span>
-          {t("messages.DELETE_MSG")} 
-          {description ? t("basic.FLOWS") :t("basic.COMPONENT")}?<br></br>
-          {note && (
-            <>
-              {note}
-              <br></br>
-            </>
-          )}
-          {t("messages.DELETE_NOTE")}
+        <span className="pb-3 text-sm">
+          This will permanently delete the {description ?? "flow"}
+          {note ? " " + note : ""}.<br></br>This can't be undone.
         </span>
         <DialogFooter>
           <DialogClose asChild>
@@ -63,6 +56,7 @@ export default function DeleteConfirmationModal({
               onClick={(e) => e.stopPropagation()}
               className="mr-1"
               variant="outline"
+              data-testid="btn_cancel_delete_confirmation_modal"
             >
               {t("basic.CANCEL")}
             </Button>
@@ -74,6 +68,7 @@ export default function DeleteConfirmationModal({
               onClick={(e) => {
                 onConfirm(e);
               }}
+              data-testid="btn_delete_delete_confirmation_modal"
             >
               {t("basic.DELETE")}
             </Button>

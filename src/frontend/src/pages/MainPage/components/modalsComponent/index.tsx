@@ -30,8 +30,8 @@ const ModalsComponent = ({
           handleDeleteFolder();
           setOpenDeleteFolderModal(false);
         }}
-        description={t("basic.FOLDERS")}
-        note={t("messages.DELETE_INFO")}
+        description="folder"
+        note={"and all associated flows and components"}
       >
         <></>
       </DeleteConfirmationModal>

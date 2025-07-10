@@ -67,7 +67,7 @@ export default function EditMessageField({
               {t("basic.CANCEL")}
             </Button>
           </div>
-          <div className="text-[13px] font-medium text-muted-foreground word-break-break-word">
+          <div className="text-mmd font-medium text-muted-foreground word-break-break-word">
             {t("messages.EDIT_MESSAGE")}
           </div>
         </div>

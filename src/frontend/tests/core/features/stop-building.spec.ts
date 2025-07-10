@@ -1,4 +1,5 @@
 import { test } from "@playwright/test";
+import { addLegacyComponents } from "../../utils/add-legacy-components";
 import { awaitBootstrapTest } from "../../utils/await-bootstrap-test";
 import { removeOldApiKeys } from "../../utils/remove-old-api-keys";
 import { updateOldComponents } from "../../utils/update-old-components";
@@ -11,13 +12,15 @@ test(
     await awaitBootstrapTest(page);
     await page.getByTestId("blank-flow").click();
 
+    await addLegacyComponents(page);
+
     //first component
 
     await page.getByTestId("sidebar-search-input").click();
     await page.getByTestId("sidebar-search-input").fill("text input");
 
     await page
-      .getByTestId("inputsText Input")
+      .getByTestId("input_outputText Input")
       .dragTo(page.locator('//*[@id="react-flow-id"]'), {
         targetPosition: { x: 0, y: 0 },
       });
@@ -63,7 +66,7 @@ test(
     await page.getByTestId("sidebar-search-input").fill("chat output");
 
     await page
-      .getByTestId("outputsChat Output")
+      .getByTestId("input_outputChat Output")
       .dragTo(page.locator('//*[@id="react-flow-id"]'), {
         targetPosition: { x: 600, y: 300 },
       });
@@ -76,13 +79,15 @@ test(
     await zoomOut(page, 2);
 
     //connection 1
-    await page.getByTestId("handle-urlcomponent-shownode-data-right").click();
     await page
-      .getByTestId("handle-splittext-shownode-data or dataframe-left")
+      .getByTestId("handle-urlcomponent-shownode-extracted pages-right")
       .click();
+    await page.getByTestId("handle-splittext-shownode-input-left").click();
 
     //connection 2
-    await page.getByTestId("handle-textinput-shownode-message-right").click();
+    await page
+      .getByTestId("handle-textinput-shownode-output text-right")
+      .click();
     await page.getByTestId("handle-splittext-shownode-separator-left").click();
 
     //connection 3
@@ -91,7 +96,9 @@ test(
 
     //connection 4
     await page.getByTestId("handle-parsedata-shownode-message-right").click();
-    await page.getByTestId("handle-chatoutput-noshownode-text-target").click();
+    await page
+      .getByTestId("handle-chatoutput-noshownode-inputs-target")
+      .click();
 
     await page.getByTestId("fit_view").click();
 

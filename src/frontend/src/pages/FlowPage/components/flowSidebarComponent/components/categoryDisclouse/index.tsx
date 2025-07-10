@@ -17,7 +17,6 @@ export const CategoryDisclosure = memo(function CategoryDisclosure({
   setOpenCategories,
   dataFilter,
   nodeColors,
-  uniqueInputsComponents,
   onDragStart,
   sensitiveSort,
 }: {
@@ -26,10 +25,6 @@ export const CategoryDisclosure = memo(function CategoryDisclosure({
   setOpenCategories;
   dataFilter: any;
   nodeColors: any;
-  uniqueInputsComponents: {
-    chatInput: boolean;
-    webhookInput: boolean;
-  };
   onDragStart: (
     event: React.DragEvent<any>,
     data: { type: string; node?: APIClassType },
@@ -50,17 +45,18 @@ export const CategoryDisclosure = memo(function CategoryDisclosure({
     },
     [item.name, setOpenCategories],
   );
+
+  const isOpen = openCategories.includes(item.name);
+  const handleOpenChange = useCallback(
+    (isOpen: boolean) => {
+      setOpenCategories((prev) =>
+        isOpen ? [...prev, item.name] : prev.filter((cat) => cat !== item.name),
+      );
+    },
+    [item.name, setOpenCategories],
+  );
   return (
-    <Disclosure
-      open={openCategories.includes(item.name)}
-      onOpenChange={(isOpen) => {
-        setOpenCategories((prev) =>
-          isOpen
-            ? [...prev, item.name]
-            : prev.filter((cat) => cat !== item.name),
-        );
-      }}
-    >
+    <Disclosure open={isOpen} onOpenChange={handleOpenChange}>
       <SidebarMenuItem>
         <DisclosureTrigger className="group/collapsible">
           <SidebarMenuButton asChild>
@@ -89,7 +85,6 @@ export const CategoryDisclosure = memo(function CategoryDisclosure({
             item={item}
             dataFilter={dataFilter}
             nodeColors={nodeColors}
-            uniqueInputsComponents={uniqueInputsComponents}
             onDragStart={onDragStart}
             sensitiveSort={sensitiveSort}
           />

@@ -4,7 +4,7 @@ import {
   SidebarGroupLabel,
   SidebarMenu,
 } from "@/components/ui/sidebar";
-import { memo, useMemo } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import { SidebarGroupProps } from "../../types";
 import { BundleItem } from "../bundleItems";
 import { useTranslation } from "react-i18next";
@@ -18,10 +18,9 @@ export const MemoizedSidebarGroup = memo(
     nodeColors,
     onDragStart,
     sensitiveSort,
+    handleKeyDownInput,
     openCategories,
     setOpenCategories,
-    handleKeyDownInput,
-    uniqueInputsComponents,
   }: SidebarGroupProps) => {
     const sortedBundles = useMemo(() => {
       return BUNDLES.toSorted((a, b) => {
@@ -42,17 +41,10 @@ export const MemoizedSidebarGroup = memo(
               <BundleItem
                 key={item.name}
                 item={item}
-                isOpen={openCategories.includes(item.name)}
-                onOpenChange={(isOpen) => {
-                  setOpenCategories((prev) =>
-                    isOpen
-                      ? [...prev, item.name]
-                      : prev.filter((cat) => cat !== item.name),
-                  );
-                }}
+                openCategories={openCategories}
+                setOpenCategories={setOpenCategories}
                 dataFilter={dataFilter}
                 nodeColors={nodeColors}
-                uniqueInputsComponents={uniqueInputsComponents}
                 onDragStart={onDragStart}
                 sensitiveSort={sensitiveSort}
                 handleKeyDownInput={handleKeyDownInput}

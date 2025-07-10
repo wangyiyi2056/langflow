@@ -47,7 +47,7 @@ export default function GetStartedComponent() {
       <BaseModal.Header description={t("mainPage.templates.GET_STARTED_DSC")}>
         {t("mainPage.templates.GET_STARTED")}
       </BaseModal.Header>
-      <div className="grid flex-1 grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 lg:grid-cols-3">
         {cardData.map((card, index) => (
           <TemplateGetStartedCardComponent key={index} {...card} />
         ))}

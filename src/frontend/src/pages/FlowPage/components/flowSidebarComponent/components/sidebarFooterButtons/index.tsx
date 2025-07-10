@@ -2,7 +2,9 @@ import ForwardedIconComponent from "@/components/common/genericIconComponent";
 import { Button } from "@/components/ui/button";
 import { SidebarMenuButton } from "@/components/ui/sidebar";
 import { CustomLink } from "@/customization/components/custom-link";
+import { ENABLE_LANGFLOW_STORE } from "@/customization/feature-flags";
 import { useTranslation } from "react-i18next";
+
 const SidebarMenuButtons = ({
   hasStore = false,
   customComponent,
@@ -12,7 +14,8 @@ const SidebarMenuButtons = ({
   const { t } = useTranslation();
   return (
     <>
-      {hasStore && (
+      {/* TODO: Remove this on cleanup */}
+      {ENABLE_LANGFLOW_STORE && hasStore && (
         <SidebarMenuButton asChild>
           <CustomLink
             to="/store"

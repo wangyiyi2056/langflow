@@ -1,5 +1,6 @@
 import { CustomBanner } from "@/customization/components/custom-banner";
 import { useCustomNavigate } from "@/customization/hooks/use-custom-navigate";
+import { To } from "react-router-dom";
 import { Button } from "../../ui/button";
 import { Separator } from "../../ui/separator";
 import ForwardedIconComponent from "../genericIconComponent";
@@ -18,7 +19,7 @@ export default function PageLayout({
   children: React.ReactNode;
   button?: React.ReactNode;
   betaIcon?: boolean;
-  backTo?: string;
+  backTo?: To;
 }) {
   const navigate = useCustomNavigate();
   const { t } = useTranslation();
@@ -36,6 +37,7 @@ export default function PageLayout({
                     onClick={() => {
                       navigate(backTo);
                     }}
+                    data-testid="back_page_button"
                   >
                     <ForwardedIconComponent
                       name="ChevronLeft"
